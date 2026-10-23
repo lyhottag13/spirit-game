@@ -38,20 +38,23 @@ centered = false
 [node name="GUI" type="CanvasLayer" parent="." unique_id=1248560299]
 unique_name_in_owner = true
 
-[node name="SceneSwitcher" parent="GUI" unique_id=1862007015 instance=ExtResource("3_r3nyt")]
-
 [node name="MixMenu" parent="GUI" unique_id=1713630294 instance=ExtResource("3_m7syd")]
 visible = false
 
 [node name="Dialogue" parent="GUI" unique_id=1311503088 instance=ExtResource("4_m7syd")]
-visible = false
+offset_left = 492.0
+offset_top = 585.0
+offset_right = 492.0
+offset_bottom = 585.0
 mouse_filter = 2
 
 [node name="ToppingMenu" parent="GUI" unique_id=404569553 instance=ExtResource("5_c5f53")]
 visible = false
 
-[connection signal="scene_switched" from="GUI/SceneSwitcher" to="." method="_on_scene_switcher_scene_switched"]
+[node name="SceneSwitcher" parent="GUI" unique_id=1862007015 instance=ExtResource("3_r3nyt")]
+
 [connection signal="mix_pressed" from="GUI/MixMenu" to="." method="_on_mix_menu_mix_pressed"]
 [connection signal="trash_pressed" from="GUI/MixMenu" to="." method="_on_mix_menu_trash_pressed"]
 [connection signal="serve_pressed" from="GUI/ToppingMenu" to="." method="_on_topping_menu_serve_pressed"]
 [connection signal="trash_pressed" from="GUI/ToppingMenu" to="." method="_on_topping_menu_trash_pressed"]
+[connection signal="scene_switched" from="GUI/SceneSwitcher" to="." method="_on_scene_switcher_scene_switched"]

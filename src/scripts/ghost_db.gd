@@ -12,6 +12,7 @@ var ghosts = {
 		"accel_mult":1,
 		"scale":0.65,
 		"movement_interval":1.5,
+		"order":"Ahoy. I wants lots o' rum or I'll scuttle ye, savvy?",
 		
 	},
 	

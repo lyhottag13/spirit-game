@@ -5,13 +5,16 @@ const MIX = preload("uid://rswunmjp4n4w")
 const TOPPING = preload("uid://co61gy3pe3qm8")
 const DRINK_SELECTED_MENU = preload("uid://c3b0oklocj8vt")
 const TOPPING_SELECTED_MENU = preload("uid://v4kgp8fow7ge")
+@onready var dialogue: Control = $GUI/Dialogue
 
 @onready var gui: CanvasLayer = %GUI
 @onready var scene_switcher: SceneSwitcher = $GUI/SceneSwitcher
 @onready var world: Node2D = %World
 @onready var mix_menu: MixMenu = $GUI/MixMenu as MixMenu
 @onready var topping_menu: ToppingMenu = $GUI/ToppingMenu
-
+var customer_num: int = 0 # which customer is the player on?
+var customer_list = ["pirate"] # var for storing order of customer
+var current_customer: Customer
 var current_scene: Node2D
 
 enum DrinkStation {
@@ -43,13 +46,24 @@ class Drink:
 	var base: Array[DrinkType] = []
 	var topping: ToppingType = ToppingType.NONE
 
+class Customer:
+	var name : String
+	var text: String
+
 var current_drink = Drink.new()
 
 func _ready() -> void:
 	current_scene = BAR.instantiate()
 	world.add_child(current_scene)
 	scene_switcher.set_pointing_to("drinks")
-
+	
+func new_customer(): #makes current customer object and sets order text 
+	var ghost = ghost_db.ghosts[customer_list[customer_num]]
+	current_customer = Customer.new()
+	current_customer.text = ghost["order"]
+	current_customer.name = customer_list[customer_num]
+	dialogue.change_text(current_customer.text)
+	
 
 func switch_scene():
 	var new_scene: Node2D
