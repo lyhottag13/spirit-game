@@ -42,6 +42,7 @@ animations = [{
 
 [node name="Mix" type="Node2D" unique_id=1145318325]
 script = ExtResource("1_qgsut")
+pour_rotation_deg = 180.0
 
 [node name="Bar" type="Sprite2D" parent="." unique_id=71625712]
 texture = ExtResource("2_ja6bk")
@@ -98,6 +99,31 @@ offset_right = 1013.0
 offset_bottom = 770.0
 scale = Vector2(0.8, 0.8)
 texture_normal = ExtResource("2_5m66n")
+
+[node name="ReadyMarkers" type="Node2D" parent="." unique_id=1127013347]
+
+[node name="Vodka" type="Marker2D" parent="ReadyMarkers" unique_id=1404336826]
+visible = false
+position = Vector2(970, 350)
+
+[node name="Syrup" type="Marker2D" parent="ReadyMarkers" unique_id=664910104]
+position = Vector2(982, 268)
+
+[node name="Brandy" type="Marker2D" parent="ReadyMarkers" unique_id=421747691]
+visible = false
+position = Vector2(970, 350)
+
+[node name="Whiskey" type="Marker2D" parent="ReadyMarkers" unique_id=317070282]
+visible = false
+position = Vector2(970, 350)
+
+[node name="Ginger" type="Marker2D" parent="ReadyMarkers" unique_id=928698078]
+visible = false
+position = Vector2(970, 350)
+
+[node name="Rum" type="Marker2D" parent="ReadyMarkers" unique_id=1308222104]
+visible = false
+position = Vector2(970, 350)
 
 [node name="Cup" type="AnimatedSprite2D" parent="." unique_id=1182569600]
 unique_name_in_owner = true
