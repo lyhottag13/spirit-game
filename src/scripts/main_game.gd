@@ -171,6 +171,10 @@ func reset_drink() -> void:
 	# Hides the topping menu if its showing.
 	topping_menu.hide()
 	
+	# Plays short animation of old cup sliding away.
+	mix_scene.replace_cup()
+	
+	# Resets the drink.
 	current_drink = Drink.new()
 
 

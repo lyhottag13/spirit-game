@@ -85,10 +85,10 @@ scale = Vector2(0.8, 0.8)
 texture_normal = ExtResource("3_3jqxk")
 
 [node name="Ginger" type="TextureButton" parent="." unique_id=699190184]
-offset_left = 1260.0
-offset_top = 709.0
-offset_right = 1510.0
-offset_bottom = 1078.0
+offset_left = 1510.0
+offset_top = 352.0
+offset_right = 1760.0
+offset_bottom = 721.0
 texture_normal = ExtResource("4_ja6bk")
 
 [node name="Rum" type="TextureButton" parent="." unique_id=1132621558]

@@ -55,3 +55,11 @@ func cancel() -> void:
 ## the cup to the full frame of the sprite frame, otherwise we set it to the empty one.
 func set_drink_sprite(full: bool) -> void:
 	cup.frame = 1 if full else 0
+
+
+func replace_cup() -> void:
+	const CUP_DISPLACEMENT = 200
+	const SLIDE_TIME = 0.4
+	await create_tween().tween_property(cup, "position:x", DisplayServer.window_get_size().x + CUP_DISPLACEMENT, SLIDE_TIME).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).finished
+	cup.position.x = -CUP_DISPLACEMENT
+	await create_tween().tween_property(cup, "position:x", DisplayServer.window_get_size().x / 2.0, SLIDE_TIME).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).finished
