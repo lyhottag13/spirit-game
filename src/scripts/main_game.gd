@@ -32,7 +32,7 @@ enum ToppingType {
 enum DrinkType {
 	VODKA,
 	SYRUP,
-	BRANDY,
+	BLOOD,
 	WHISKEY,
 	GIN,
 	RUM,
@@ -64,6 +64,13 @@ func _ready() -> void:
 	current_desired_drink.base = ghost_base
 	#current_desired_drink.base = [DrinkType.RUM, DrinkType.RUM, DrinkType.RUM]
 	current_desired_drink.topping = ghost_drink.topping
+	
+	# Sets up custom mouse cursors
+	var cursor_idle = preload("uid://dhcdqy41eqhsh")
+	var cursor_interactable = preload("uid://coevld4vpf17c")
+	
+	Input.set_custom_mouse_cursor(cursor_idle)
+	Input.set_custom_mouse_cursor(cursor_interactable, Input.CURSOR_POINTING_HAND)
 
 
 func switch_scene():
@@ -119,8 +126,8 @@ func _on_mix_drink_selected(drink_type: String) -> void:
 	drink_menu.set_tooltip(drink_type.capitalize(), "Default")
 	
 	# Hides the scene switcher so the player can't swap while selecting.
-	scene_switcher.hide()
-	mix_menu.set_button_visibility(false)
+	scene_switcher.set_enabled(false)
+	mix_menu.set_enabled(false)
 
 
 func _on_drink_menu_poured() -> void:
@@ -132,17 +139,16 @@ func _on_drink_menu_poured() -> void:
 	
 	# Addes the poured drink into the list of bases
 	current_drink.base.append(poured_drink)
-	
-	# Shows the mix button by default, since pouring a unit implies that there is more than one unit in the drink.
-	mix_menu.set_button_visibility(true)
-	
+		
 	# Sets the cup sprite to look full.
 	if current_drink.base.size() == 3:
 		mix_scene.set_drink_sprite(true)
+
+	# Shows the mix button by default, since pouring a unit implies that there is more than one unit in the drink.
+	mix_menu.set_enabled(true)
 	
 	# Shows the scene switcher to allow the user to switch again.
-	scene_switcher.show()
-	mix_menu.set_button_visibility(true)
+	scene_switcher.set_enabled(true)
 
 
 func _on_drink_menu_canceled() -> void:
@@ -152,17 +158,17 @@ func _on_drink_menu_canceled() -> void:
 	# Shows the trash/mix buttons ONLY IF there is at least one base.
 	# Without the base check, then the buttons will show up on cancel EVEN IF THERE IS NO BASE!
 	if not current_drink.base.is_empty():
-		mix_menu.set_button_visibility(true)
+		mix_menu.set_enabled(true)
 	
 	# Shows the scene switcher to allow the user to switch again.
-	scene_switcher.show()
+	scene_switcher.set_enabled(true)
 
 
 ## Resets the drink if the user trashes it or finishes the current customer.
 func reset_drink() -> void:
 	var mix_scene := current_scene as Mix
 	mix_scene.cancel()
-	mix_menu.set_button_visibility(false)
+
 	mix_menu.reset()
 	
 	# Empties the drink in the mix scene.
@@ -266,7 +272,7 @@ func _handle_serve() -> void:
 	switch_scene()
 	
 	# Prevents the player from switching scenes.
-	scene_switcher.hide()
+	scene_switcher.set_enabled(false)
 	
 	# Checks whether the drink satisfies the order.
 	var is_satisfied = test_drink()
@@ -290,7 +296,9 @@ func _handle_serve() -> void:
 	current_drink = Drink.new()
 	
 	# Allows the user to switch scenes again.
+	scene_switcher.set_enabled(true)
 	scene_switcher.show()
+	
 
 
 ## Tests whether the drink meets the current customer's standards.

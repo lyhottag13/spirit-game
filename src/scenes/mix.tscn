@@ -3,28 +3,15 @@
 [ext_resource type="Script" uid="uid://bv0adv0jofxgy" path="res://src/scripts/mix.gd" id="1_qgsut"]
 [ext_resource type="Texture2D" uid="uid://xnhfya1wsv54" path="res://src/resources/images/Red_Rum.png" id="2_5m66n"]
 [ext_resource type="Texture2D" uid="uid://blaetca0ydaha" path="res://src/resources/images/Vodka.png" id="2_dbwtw"]
-[ext_resource type="Texture2D" uid="uid://dmnrchdg87yyu" path="res://src/resources/images/Bar_Top_Empty.png" id="2_ja6bk"]
+[ext_resource type="Texture2D" uid="uid://wd2ssplty3jg" path="res://src/resources/images/Mix_Background.png" id="2_xb2in"]
 [ext_resource type="Texture2D" uid="uid://x0wjmmcrx0xd" path="res://src/resources/images/Whisky.png" id="3_3jqxk"]
+[ext_resource type="Texture2D" uid="uid://b0qbxedl8rl8" path="res://src/resources/images/Mix_Bar.png" id="3_xb2in"]
 [ext_resource type="Texture2D" uid="uid://drdv87ia7b7bn" path="res://src/resources/images/Simple_Ecto.png" id="4_244je"]
 [ext_resource type="Texture2D" uid="uid://wxxxtoaes1wa" path="res://src/resources/images/Ginger_Beer.png" id="4_ja6bk"]
+[ext_resource type="Texture2D" uid="uid://c0bbok0v2147j" path="res://src/resources/images/Bar_Shelf.png" id="4_keo1o"]
 [ext_resource type="Texture2D" uid="uid://d3rjk6bslvb8x" path="res://src/resources/images/Cup.png" id="6_3jqxk"]
+[ext_resource type="Texture2D" uid="uid://cydg17gpf7ds2" path="res://src/resources/images/Blood.png" id="7_keo1o"]
 [ext_resource type="Texture2D" uid="uid://67htwrjskknd" path="res://src/resources/images/Cup_Full.png" id="9_w2sh7"]
-
-[sub_resource type="Gradient" id="Gradient_qgsut"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0.38658705, 0.18448776, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_s7wsd"]
-gradient = SubResource("Gradient_qgsut")
-width = 1920
-
-[sub_resource type="Gradient" id="Gradient_5m66n"]
-offsets = PackedFloat32Array(0, 0.16321243)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qgsut"]
-gradient = SubResource("Gradient_5m66n")
-width = 203
-height = 369
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s7wsd"]
 animations = [{
@@ -43,60 +30,69 @@ animations = [{
 [node name="Mix" type="Node2D" unique_id=1145318325]
 script = ExtResource("1_qgsut")
 
-[node name="Bar" type="Sprite2D" parent="." unique_id=71625712]
-texture = ExtResource("2_ja6bk")
+[node name="Background" type="Sprite2D" parent="." unique_id=824239316]
+modulate = Color(0.6781177, 0.6781177, 0.67811763, 1)
+texture = ExtResource("2_xb2in")
 centered = false
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=24935197]
-position = Vector2(0, 619)
-scale = Vector2(1, 37)
-texture = SubResource("GradientTexture1D_s7wsd")
+[node name="Bar" type="Sprite2D" parent="." unique_id=71625712]
+texture = ExtResource("3_xb2in")
+centered = false
+
+[node name="Shelf" type="Sprite2D" parent="." unique_id=24935197]
+texture = ExtResource("4_keo1o")
 centered = false
 
 [node name="Vodka" type="TextureButton" parent="." unique_id=915260520]
 offset_left = 44.0
-offset_top = 179.99998
+offset_top = 31.0
 offset_right = 444.0
-offset_bottom = 780.0
+offset_bottom = 631.0
 scale = Vector2(0.8, 0.8)
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("2_dbwtw")
 stretch_mode = 4
 
 [node name="Syrup" type="TextureButton" parent="." unique_id=1201203487]
 offset_left = 1165.0
-offset_top = 69.0
+offset_top = -80.0
 offset_right = 1565.0
-offset_bottom = 669.0
+offset_bottom = 520.0
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("4_244je")
 
-[node name="Brandy" type="TextureButton" parent="." unique_id=1351981382]
-offset_left = 969.0
-offset_top = 261.0
-offset_right = 1173.0
-offset_bottom = 630.0
-texture_normal = SubResource("GradientTexture2D_qgsut")
+[node name="Blood" type="TextureButton" parent="." unique_id=1351981382]
+offset_left = 933.0
+offset_top = 201.0
+offset_right = 1233.0
+offset_bottom = 570.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_keo1o")
 
 [node name="Whiskey" type="TextureButton" parent="." unique_id=1515463079]
 offset_left = 317.0
-offset_top = 181.0
+offset_top = 32.000015
 offset_right = 717.0
-offset_bottom = 781.0
+offset_bottom = 632.0
 scale = Vector2(0.8, 0.8)
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("3_3jqxk")
 
 [node name="Ginger" type="TextureButton" parent="." unique_id=699190184]
 offset_left = 1510.0
-offset_top = 352.0
+offset_top = 203.0
 offset_right = 1760.0
-offset_bottom = 721.0
+offset_bottom = 572.0
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("4_ja6bk")
 
 [node name="Rum" type="TextureButton" parent="." unique_id=1132621558]
 offset_left = 613.0
-offset_top = 170.0
+offset_top = 21.000015
 offset_right = 1013.0
-offset_bottom = 770.0
+offset_bottom = 621.0
 scale = Vector2(0.8, 0.8)
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("2_5m66n")
 
 [node name="Cup" type="AnimatedSprite2D" parent="." unique_id=1182569600]
@@ -106,7 +102,7 @@ sprite_frames = SubResource("SpriteFrames_s7wsd")
 
 [connection signal="pressed" from="Vodka" to="." method="_on_drink_clicked" binds= [0]]
 [connection signal="pressed" from="Syrup" to="." method="_on_drink_clicked" binds= [1]]
-[connection signal="pressed" from="Brandy" to="." method="_on_drink_clicked" binds= [2]]
+[connection signal="pressed" from="Blood" to="." method="_on_drink_clicked" binds= [2]]
 [connection signal="pressed" from="Whiskey" to="." method="_on_drink_clicked" binds= [3]]
 [connection signal="pressed" from="Ginger" to="." method="_on_drink_clicked" binds= [4]]
 [connection signal="pressed" from="Rum" to="." method="_on_drink_clicked" binds= [5]]
