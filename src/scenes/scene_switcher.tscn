@@ -26,6 +26,7 @@ offset_top = 160.0
 offset_bottom = 460.0
 grow_horizontal = 0
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("2_1dsul")
 texture_hover = ExtResource("3_kampj")
 

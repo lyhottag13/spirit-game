@@ -11,7 +11,7 @@ enum ToppingType {
 enum DrinkType {
 	VODKA,
 	SYRUP,
-	BRANDY,
+	BLOOD,
 	WHISKEY,
 	GIN,
 	RUM,

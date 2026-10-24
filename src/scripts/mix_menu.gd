@@ -9,6 +9,7 @@ signal trash_pressed
 @onready var trash: TextureButton = %Trash
 
 const meter_height = 810
+const DISABLED_ALPHA_VALUE = 0.3
 
 func _ready() -> void:
 	loop_tween()
@@ -24,9 +25,12 @@ func set_meter(value: int) -> void:
 	fill_meter.frame = value
 
 
-func set_button_visibility(showing: bool) -> void:
-	mix.visible = showing
-	trash.visible = showing
+func set_enabled(enabled: bool) -> void:
+	mix.disabled = not enabled
+	mix.modulate.a = 1.0 if enabled else DISABLED_ALPHA_VALUE
+	
+	trash.disabled = not enabled
+	trash.modulate.a = 1.0 if enabled else DISABLED_ALPHA_VALUE
 
 
 func increment_meter() -> void:
@@ -38,7 +42,7 @@ func _on_mix_pressed() -> void:
 
 
 func reset() -> void:
-	set_button_visibility(false)
+	set_enabled(false)
 	set_meter(0)
 
 

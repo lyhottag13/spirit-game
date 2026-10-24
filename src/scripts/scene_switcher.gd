@@ -7,7 +7,7 @@ const DRINKS_1 = preload("uid://bhltcois26yc6")
 const DRINKS_2 = preload("uid://b0c8blklwbx54")
 const BAR_1 = preload("uid://jy6cqvhma6mi")
 const BAR_2 = preload("uid://cnjm2ttu8aor7")
-
+const DISABLED_ALPHA_VALUE = 0.3
 
 @onready var switcher: TextureButton = $Switcher
 
@@ -33,3 +33,8 @@ func set_pointing_to(pointing_to: String) -> void:
 			switcher.texture_hover = DRINKS_2
 			switcher.set_anchors_preset(Control.PRESET_CENTER_RIGHT, true)
 			switcher.position.x -= 400
+
+
+func set_enabled(enabled: bool) -> void:
+	switcher.disabled = not enabled
+	switcher.modulate.a = 1 if enabled else DISABLED_ALPHA_VALUE
