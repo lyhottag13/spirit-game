@@ -98,6 +98,7 @@ func switch_scene():
 					
 				DrinkStation.TOPPING:
 					new_scene = TOPPING.instantiate() as Topping
+					new_scene.topping_selected.connect(_on_topping_topping_selected)
 					topping_menu.show()
 					
 			scene_switcher.set_pointing_to("bar")

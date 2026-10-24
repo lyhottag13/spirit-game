@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://co61gy3pe3qm8"]
 
 [ext_resource type="Script" uid="uid://crdrg8id5cqa0" path="res://src/scripts/topping.gd" id="1_168y2"]
+[ext_resource type="Texture2D" uid="uid://cfermst73oln8" path="res://src/resources/images/Topping_Mint.png" id="2_obmyh"]
+[ext_resource type="Texture2D" uid="uid://bu3wrkgwmpo48" path="res://src/resources/images/Topping_Cherry.png" id="3_tbtnn"]
 
 [sub_resource type="Gradient" id="Gradient_21xd2"]
 offsets = PackedFloat32Array(1)
@@ -15,6 +17,14 @@ colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_s7wsd"]
 gradient = SubResource("Gradient_s7rlf")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_215jv"]
+atlas = ExtResource("2_obmyh")
+region = Rect2(31.100021, 20.745235, 264, 312.7588)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgict"]
+atlas = ExtResource("3_tbtnn")
+region = Rect2(74.406525, 21.6, 251.2396, 303.1)
 
 [sub_resource type="Gradient" id="Gradient_168y2"]
 
@@ -41,13 +51,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 126.0
-offset_top = 558.0
-offset_right = 251.89879
-offset_bottom = 679.0
+offset_left = 14.0
+offset_top = 361.0
+offset_right = 408.0
+offset_bottom = 826.63635
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = SubResource("GradientTexture2D_s7rlf")
+texture_normal = SubResource("AtlasTexture_215jv")
 stretch_mode = 0
 
 [node name="TextureButton2" type="TextureButton" parent="." unique_id=1060524951]
@@ -56,13 +66,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 457.0
-offset_top = 558.0
-offset_right = 582.8988
-offset_bottom = 679.0
+offset_left = 396.0
+offset_top = 408.0
+offset_right = 739.0
+offset_bottom = 822.0597
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = SubResource("GradientTexture2D_s7rlf")
+texture_normal = SubResource("AtlasTexture_dgict")
 stretch_mode = 0
 
 [node name="TextureButton3" type="TextureButton" parent="." unique_id=367492699]
