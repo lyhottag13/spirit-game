@@ -192,17 +192,35 @@ func reset_drink() -> void:
 
 
 func _on_mix_menu_mix_pressed() -> void:
-	current_scene.queue_free()
-	current_scene = TOPPING.instantiate() as Topping
-	current_scene.topping_selected.connect(_on_topping_topping_selected)
-	world.add_child(current_scene)
-	
+	# Hides and resets the mix menu as it isn't necessary.
 	mix_menu.hide()
 	mix_menu.reset()
+	
+	# Prevents the player from switching scenes while the cup is sliding.
+	scene_switcher.set_enabled(false)
+	
+	# Slides the cup out from the mix scene and waits until the slide is over.
+	var mix_scene = current_scene as Mix
+	await mix_scene.exit_cup()
+	
+	# Removes the mix scene.
+	current_scene.queue_free()
+	
+	# Creates the new topping scene and connects signals.
+	var topping_scene = TOPPING.instantiate() as Topping
+	topping_scene.topping_selected.connect(_on_topping_topping_selected)
+	
+	# Assigns the new topping scene to the current_scene reference.
+	current_scene = topping_scene
+	
+	world.add_child(current_scene)
 	
 	topping_menu.show()
 	
 	current_drink_station = DrinkStation.TOPPING
+	
+	# Enables the switcher for player interaction.
+	scene_switcher.set_enabled(true)
 
 
 ## Handles the player trashing their drink in the mixing station.
@@ -249,6 +267,7 @@ func _on_topping_menu_canceled() -> void:
 
 
 func _on_topping_menu_trash_pressed() -> void:
+	# Sets the drink station so the scene switcher works.
 	current_drink_station = DrinkStation.MIX
 	
 	# Frees the old topping scene, which is guaranteed to exist.
@@ -257,14 +276,17 @@ func _on_topping_menu_trash_pressed() -> void:
 	# Makes the current scene the mix scene
 	current_scene = MIX.instantiate() as Mix
 	
+	# Connects the signals to this script's methods.
+	current_scene.drink_selected.connect(_on_mix_drink_selected)
+	
 	# Adds the mix scene back into the world node.
 	world.add_child(current_scene)
 	
 	# Resets the drink.
 	reset_drink()
 	
-	# Connects the signals to this script's methods.
-	current_scene.drink_selected.connect(_on_mix_drink_selected)
+	# Slides a new drink in.
+	current_scene.enter_cup()
 	
 	# Shows the mix menu, which has already been reset.
 	mix_menu.show()

@@ -57,9 +57,19 @@ func set_drink_sprite(full: bool) -> void:
 	cup.frame = 1 if full else 0
 
 
+const CUP_DISPLACEMENT = 200
+const SLIDE_TIME = 0.4
+
 func replace_cup() -> void:
-	const CUP_DISPLACEMENT = 200
-	const SLIDE_TIME = 0.4
-	await create_tween().tween_property(cup, "position:x", DisplayServer.window_get_size().x + CUP_DISPLACEMENT, SLIDE_TIME).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).finished
+	await exit_cup()
+	await enter_cup()
+
+
+## Separate method for the cup entering because we can use this when swapping into the mix scene.
+func enter_cup() -> void:
 	cup.position.x = -CUP_DISPLACEMENT
 	await create_tween().tween_property(cup, "position:x", DisplayServer.window_get_size().x / 2.0, SLIDE_TIME).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).finished
+
+## Separate method for the cup exiting because we can use this when swapping to the topping scene.
+func exit_cup() -> void:
+	await create_tween().tween_property(cup, "position:x", DisplayServer.window_get_size().x + CUP_DISPLACEMENT, SLIDE_TIME).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).finished
