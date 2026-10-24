@@ -31,7 +31,7 @@ enum ToppingType {
 
 enum DrinkType {
 	VODKA,
-	TEQUILA,
+	SYRUP,
 	BRANDY,
 	WHISKEY,
 	GIN,
@@ -40,10 +40,13 @@ enum DrinkType {
 }
 
 class Drink:
-	var base: Array[DrinkType] = []
+	var base: Array = []
 	var topping: ToppingType = ToppingType.NONE
 
-var current_drink = Drink.new()
+
+var current_drink := Drink.new()
+
+var current_desired_drink: Drink
 
 var reputation := 0
 
@@ -51,6 +54,16 @@ func _ready() -> void:
 	current_scene = BAR.instantiate()
 	world.add_child(current_scene)
 	scene_switcher.set_pointing_to("drinks")
+	
+	var ghost_drink := ghost_db.ghosts["pirate"]["drink"] as Dictionary
+	var ghost_base = ghost_drink.base as Array[DrinkType]
+	print_debug(ghost_drink.base)
+	
+	# Initializes the desired drink with the pirate's desired drink.
+	current_desired_drink = Drink.new()
+	current_desired_drink.base = ghost_base
+	#current_desired_drink.base = [DrinkType.RUM, DrinkType.RUM, DrinkType.RUM]
+	current_desired_drink.topping = ghost_drink.topping
 
 
 func switch_scene():
@@ -123,11 +136,9 @@ func _on_drink_menu_poured() -> void:
 	# Shows the mix button by default, since pouring a unit implies that there is more than one unit in the drink.
 	mix_menu.set_button_visibility(true)
 	
+	# Sets the cup sprite to look full.
 	if current_drink.base.size() == 3:
-		# Sets the cup sprite to look full.
 		mix_scene.set_drink_sprite(true)
-		
-		pass # Do something here to only allow mixing in the Mix menu.
 	
 	# Shows the scene switcher to allow the user to switch again.
 	scene_switcher.show()
@@ -254,20 +265,22 @@ func _handle_serve() -> void:
 	scene_switcher.hide()
 	
 	# Checks whether the drink satisfies the order.
-	var is_satisfied = test_drink(current_drink)
+	var is_satisfied = test_drink()
 	
-	if is_satisfied:
-		# Improves the bar's reputation if the drink was good.
-		reputation += 1
-		
-		var bar_scene := current_scene as Bar
-		
-		current_drink_station = DrinkStation.MIX
-		
-		# REPLACE!!! We should be loading the new customer's PNG here.
-		await bar_scene.swap_customer(load("res://src/resources/images/Pirate_Ghost.png"))
-	else:
-		pass
+	# Debug
+	print_debug(is_satisfied)
+	
+	# Changes the reputation depending on the drink's quality.
+	reputation += 1 if is_satisfied else -1
+	
+	# Resets the drink station to the Mix station.
+	current_drink_station = DrinkStation.MIX
+	
+	# Casts for error handling, even though current_scene should always be Bar.
+	var bar_scene := current_scene as Bar
+	
+	# REPLACE!!! We should be loading the incoming customer's PNG here.
+	await bar_scene.swap_customer(load("res://src/resources/images/Pirate_Ghost.png"))
 	
 	# Resets the current drink. SHOULD BE reset_drink() BUT THAT INCLUDES MIX SCENE BEHAVIOR!
 	current_drink = Drink.new()
@@ -277,7 +290,23 @@ func _handle_serve() -> void:
 
 
 ## Tests whether the drink meets the current customer's standards.
-func test_drink(drink: Drink) -> bool:
-	# TODO: Figure out the logic for a correct drink, simplest way would be to
+func test_drink() -> bool:
+	# TODO: Figure out logic for a correct drink, simplest way would be to
 	# check if the drink matches exactly what the customer wanted.
-	return true
+	
+	# Stores the actual drink's base and sorts it for easy comparison.
+	var current_base = current_drink.base
+	current_base.sort()
+	
+	# Stores the desired drink's base and sorts it for easy comparison.
+	var desired_base = current_desired_drink.base
+	desired_base.sort()
+	
+	# Stores the toppings for easy access.
+	var current_topping = current_drink.topping
+	var desired_topping = current_desired_drink.topping
+	
+	# Compares the hash of the bases to test for array equality
+	var is_drink_good = current_base.hash() == desired_base.hash() and current_topping == desired_topping
+	
+	return is_drink_good
