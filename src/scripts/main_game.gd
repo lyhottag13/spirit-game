@@ -50,6 +50,13 @@ var current_desired_drink: Drink
 
 var reputation := 0
 
+# Automatically sets the window to fullscreen on mouse click for web builds.
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.pressed and DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
+
 func _ready() -> void:
 	current_scene = BAR.instantiate()
 	world.add_child(current_scene)
