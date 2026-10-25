@@ -3,13 +3,8 @@
 [ext_resource type="Script" uid="uid://crdrg8id5cqa0" path="res://src/scripts/topping.gd" id="1_168y2"]
 [ext_resource type="Texture2D" uid="uid://cfermst73oln8" path="res://src/resources/images/Topping_Mint.png" id="2_obmyh"]
 [ext_resource type="Texture2D" uid="uid://bu3wrkgwmpo48" path="res://src/resources/images/Topping_Cherry.png" id="3_tbtnn"]
-
-[sub_resource type="Gradient" id="Gradient_21xd2"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0.5, 0.24563241, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_aqs7r"]
-gradient = SubResource("Gradient_21xd2")
+[ext_resource type="Texture2D" uid="uid://dmnrchdg87yyu" path="res://src/resources/images/Bar_Top_Empty.png" id="3_upqdo"]
+[ext_resource type="Texture2D" uid="uid://wd2ssplty3jg" path="res://src/resources/images/Mix_Background.png" id="4_tbtnn"]
 
 [sub_resource type="Gradient" id="Gradient_s7rlf"]
 offsets = PackedFloat32Array(1)
@@ -34,10 +29,12 @@ gradient = SubResource("Gradient_168y2")
 [node name="Topping" type="Node2D" unique_id=229168026]
 script = ExtResource("1_168y2")
 
+[node name="Background" type="Sprite2D" parent="." unique_id=1335658528]
+texture = ExtResource("4_tbtnn")
+centered = false
+
 [node name="Bar" type="Sprite2D" parent="." unique_id=891087781]
-position = Vector2(0, 578.00006)
-scale = Vector2(7.5, 507.17798)
-texture = SubResource("GradientTexture1D_aqs7r")
+texture = ExtResource("3_upqdo")
 centered = false
 
 [node name="Drink" type="Sprite2D" parent="." unique_id=1809839358]

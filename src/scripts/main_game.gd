@@ -123,6 +123,9 @@ func _on_mix_drink_selected(drink_type: String) -> void:
 	if current_drink.base.size() == 3:
 		return
 	
+	# Brings the drink towards the cup.
+	(current_scene as Mix).move_drink()
+	
 	var drink_menu := DRINK_SELECTED_MENU.instantiate() as DrinkSelectedMenu
 	
 	# Connects the drink menu's pour function to pour the drink in the Mix scene and add it to the current_drink
@@ -133,7 +136,7 @@ func _on_mix_drink_selected(drink_type: String) -> void:
 	# Sets the drink tooltip in the drink_menu.
 	drink_menu.set_tooltip(drink_type.capitalize(), "Default")
 	
-	# Hides the scene switcher so the player can't swap while selecting.
+	# Disables the scene switcher so the player can't swap while selecting.
 	scene_switcher.set_enabled(false)
 	mix_menu.set_enabled(false)
 
