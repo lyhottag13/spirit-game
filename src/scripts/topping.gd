@@ -14,6 +14,7 @@ var topping_textures: Dictionary[Classes.ToppingType, CompressedTexture2D] = {
 }
 
 @onready var topping: Sprite2D = %Topping
+@onready var glass_cup: Node2D = %GlassCup
 
 func _on_topping_clicked(topping_type: Classes.ToppingType) -> void:
 	# Returns early if the topping isn't NONE, since that means we're currently deciding to pour or cancel.
@@ -53,3 +54,12 @@ func top() -> Classes.ToppingType:
 ## Cancels the topping and returns to a no-topping state.
 func cancel() -> void:
 	selected_topping = Classes.ToppingType.NONE
+
+
+## Slides the drink in from the left side of the screen.
+## Only required when the game is swapping from the shake to the topping scene.
+func enter_drink() -> void:
+	await create_tween().tween_property(glass_cup, "position:x", DisplayServer.window_get_size().x / 2.0, 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).finished
+
+func exit_drink() -> void:
+	await create_tween().tween_property(glass_cup, "position:x", DisplayServer.window_get_size().x + 300, 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).finished

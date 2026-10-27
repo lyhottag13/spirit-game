@@ -2,6 +2,7 @@ extends Node
 
 const BAR = preload("uid://bvkn4awiardov")
 const MIX = preload("uid://rswunmjp4n4w")
+const SHAKE = preload("uid://buj73vv3ikn4n")
 const TOPPING = preload("uid://co61gy3pe3qm8")
 const DRINK_SELECTED_MENU = preload("uid://c3b0oklocj8vt")
 const TOPPING_SELECTED_MENU = preload("uid://v4kgp8fow7ge")
@@ -226,6 +227,23 @@ func _on_mix_menu_mix_pressed() -> void:
 	# Removes the mix scene.
 	current_scene.queue_free()
 	
+	# Creates the new shake scene and connects signals.
+	var shake_scene = SHAKE.instantiate() as Shake
+	shake_scene.drink_shaken.connect(_on_shake_drink_shaken)
+	
+	# Assigns the new shake scene to the current_scene reference.
+	current_scene = shake_scene
+	
+	world.add_child(current_scene)
+	
+	# Hides the switcher for player interaction, since players shouldn't be able to swap from the shaker.
+	scene_switcher.hide()
+
+
+func _on_shake_drink_shaken() -> void:
+	# Removes the shake scene.
+	current_scene.queue_free()
+	
 	# Creates the new topping scene and connects signals.
 	var topping_scene = TOPPING.instantiate() as Topping
 	topping_scene.topping_selected.connect(_on_topping_topping_selected)
@@ -235,12 +253,15 @@ func _on_mix_menu_mix_pressed() -> void:
 	
 	world.add_child(current_scene)
 	
+	# Slides the drink in from the left side of the screen.
+	topping_scene.enter_drink()
+	
 	topping_menu.show()
 	
 	current_drink_station = DrinkStation.TOPPING
 	
-	# Enables the switcher for player interaction.
-	scene_switcher.set_enabled(true)
+	# Shows the switcher for player interaction, since at this point it's hidden.
+	scene_switcher.show()
 
 
 ## Handles the player trashing their drink in the mixing station.
@@ -316,6 +337,8 @@ func _on_topping_menu_trash_pressed() -> void:
 func _handle_serve() -> void:
 	# Debug
 	print_debug("Served!")
+	
+	await (current_scene as Topping).exit_drink()
 	
 	# Swaps the scene back to the bar.
 	switch_scene()

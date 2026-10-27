@@ -89,21 +89,22 @@ grow_vertical = 2
 texture_normal = ExtResource("7_xxm0p")
 stretch_mode = 0
 
-[node name="Drink" type="Node2D" parent="." unique_id=282660004]
-position = Vector2(960, 662)
+[node name="GlassCup" type="Node2D" parent="." unique_id=282660004]
+unique_name_in_owner = true
+position = Vector2(-262, 662)
 
-[node name="DrinkBack" type="Sprite2D" parent="Drink" unique_id=523426503]
+[node name="GlassCupBack" type="Sprite2D" parent="GlassCup" unique_id=523426503]
 scale = Vector2(1.4, 1.4)
 texture = ExtResource("6_pxvxp")
 
-[node name="DrinkFill" type="Sprite2D" parent="Drink" unique_id=203896863]
+[node name="GlassCupFill" type="Sprite2D" parent="GlassCup" unique_id=203896863]
 scale = Vector2(1.4, 1.4)
 texture = ExtResource("7_ko42s")
 
-[node name="Topping" type="Sprite2D" parent="Drink" unique_id=17962654]
+[node name="Topping" type="Sprite2D" parent="GlassCup" unique_id=17962654]
 unique_name_in_owner = true
 
-[node name="DrinkFront" type="Sprite2D" parent="Drink" unique_id=1809839358]
+[node name="GlassCupFront" type="Sprite2D" parent="GlassCup" unique_id=1809839358]
 scale = Vector2(1.3999999, 1.3999999)
 texture = ExtResource("8_vovy6")
 

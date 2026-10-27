@@ -21,21 +21,23 @@ centered = false
 
 [node name="Shaker" type="Sprite2D" parent="." unique_id=1038640471]
 unique_name_in_owner = true
-position = Vector2(1211.9999, 371.99997)
+position = Vector2(1060, 372)
 rotation = -1.2479104
 texture = ExtResource("4_o6noi")
+offset = Vector2(120, 170)
 
-[node name="Drink" type="Node2D" parent="." unique_id=326193456]
-position = Vector2(960, 662)
+[node name="GlassCup" type="Node2D" parent="." unique_id=326193456]
+unique_name_in_owner = true
+position = Vector2(-257, 662)
 
-[node name="DrinkBack" type="Sprite2D" parent="Drink" unique_id=1812008315]
+[node name="GlassCupBack" type="Sprite2D" parent="GlassCup" unique_id=1812008315]
 scale = Vector2(1.4, 1.4)
 texture = ExtResource("4_mh1cm")
 
-[node name="DrinkFill" type="Sprite2D" parent="Drink" unique_id=1659815907]
+[node name="GlassCupFill" type="Sprite2D" parent="GlassCup" unique_id=1659815907]
 scale = Vector2(1.4, 1.4)
 texture = ExtResource("5_43ica")
 
-[node name="DrinkFront" type="Sprite2D" parent="Drink" unique_id=1623285018]
+[node name="GlassCupFront" type="Sprite2D" parent="GlassCup" unique_id=1623285018]
 scale = Vector2(1.3999999, 1.3999999)
 texture = ExtResource("6_od48p")
