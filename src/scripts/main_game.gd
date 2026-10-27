@@ -332,7 +332,7 @@ func _handle_serve() -> void:
 	# Debug
 	print_debug(is_satisfied)
 	
-	# Changes the reputation depending on the drink's quality.
+	# Changes the bar's reputation depending on the drink's quality.
 	reputation += 1 if is_satisfied else -1
 	
 	# Resets the drink station to the Mix station.

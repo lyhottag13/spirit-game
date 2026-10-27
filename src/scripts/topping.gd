@@ -23,7 +23,7 @@ func _on_topping_clicked(topping_type: Classes.ToppingType) -> void:
 	selected_topping = topping_type
 	
 	var topping_to_emit: String
-	var topping_texture: CompressedTexture2D
+
 	# Tells the MainGame what topping was selected.
 	match topping_type:
 		Classes.ToppingType.MINT:

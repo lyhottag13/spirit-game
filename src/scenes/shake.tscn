@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://buj73vv3ikn4n"]
+
+[ext_resource type="Script" uid="uid://cso5xg483gh37" path="res://src/scripts/shake.gd" id="1_35t8m"]
+[ext_resource type="Texture2D" uid="uid://wd2ssplty3jg" path="res://src/resources/images/Mix_Background.png" id="2_o6noi"]
+[ext_resource type="Texture2D" uid="uid://dmnrchdg87yyu" path="res://src/resources/images/Bar_Top_Empty.png" id="3_f7m1k"]
+[ext_resource type="Texture2D" uid="uid://cehhyyar7oaq8" path="res://src/resources/images/Glass_Cup_Back.png" id="4_mh1cm"]
+[ext_resource type="Texture2D" uid="uid://d3rjk6bslvb8x" path="res://src/resources/images/Cup.png" id="4_o6noi"]
+[ext_resource type="Texture2D" uid="uid://dv0672tqt6qny" path="res://src/resources/images/Glass_Cup_Fill.png" id="5_43ica"]
+[ext_resource type="Texture2D" uid="uid://dtjhuwef3mm1g" path="res://src/resources/images/Glass_Cup_Front.png" id="6_od48p"]
+
+[node name="Shake" type="Node2D" unique_id=1583350732]
+script = ExtResource("1_35t8m")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=430853423]
+texture = ExtResource("2_o6noi")
+centered = false
+
+[node name="Bar" type="Sprite2D" parent="." unique_id=271618395]
+texture = ExtResource("3_f7m1k")
+centered = false
+
+[node name="Shaker" type="Sprite2D" parent="." unique_id=1038640471]
+unique_name_in_owner = true
+position = Vector2(1211.9999, 371.99997)
+rotation = -1.2479104
+texture = ExtResource("4_o6noi")
+
+[node name="Drink" type="Node2D" parent="." unique_id=326193456]
+position = Vector2(960, 662)
+
+[node name="DrinkBack" type="Sprite2D" parent="Drink" unique_id=1812008315]
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("4_mh1cm")
+
+[node name="DrinkFill" type="Sprite2D" parent="Drink" unique_id=1659815907]
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("5_43ica")
+
+[node name="DrinkFront" type="Sprite2D" parent="Drink" unique_id=1623285018]
+scale = Vector2(1.3999999, 1.3999999)
+texture = ExtResource("6_od48p")
