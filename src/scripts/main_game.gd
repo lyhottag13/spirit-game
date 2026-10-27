@@ -6,11 +6,16 @@ const TOPPING = preload("uid://co61gy3pe3qm8")
 const DRINK_SELECTED_MENU = preload("uid://c3b0oklocj8vt")
 const TOPPING_SELECTED_MENU = preload("uid://v4kgp8fow7ge")
 
+@onready var dialogue: Control = $GUI/Dialogue
 @onready var gui: CanvasLayer = %GUI
 @onready var scene_switcher: SceneSwitcher = $GUI/SceneSwitcher
 @onready var world: Node2D = %World
 @onready var mix_menu: MixMenu = $GUI/MixMenu as MixMenu
 @onready var topping_menu: ToppingMenu = $GUI/ToppingMenu as ToppingMenu
+
+var customer_num: int = 0 # which customer is the player on?
+var customer_list = ["pirate"] # var for storing order of customer
+var current_customer: Customer
 
 var current_scene: Node2D
 
@@ -43,6 +48,9 @@ class Drink:
 	var base: Array = []
 	var topping: ToppingType = ToppingType.NONE
 
+class Customer:
+	var name : String
+	var text: String
 
 var current_drink := Drink.new()
 
@@ -55,6 +63,10 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed and DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
+
+
+var current_drink = Drink.new()
 
 
 func _ready() -> void:
@@ -78,6 +90,14 @@ func _ready() -> void:
 	
 	Input.set_custom_mouse_cursor(cursor_idle)
 	Input.set_custom_mouse_cursor(cursor_interactable, Input.CURSOR_POINTING_HAND)
+
+
+func new_customer(): #makes current customer object and sets order text 
+	var ghost = ghost_db.ghosts[customer_list[customer_num]]
+	current_customer = Customer.new()
+	current_customer.text = ghost["order"]
+	current_customer.name = customer_list[customer_num]
+	dialogue.change_text(current_customer.text)
 
 
 func switch_scene():

@@ -31,8 +31,10 @@ var ghosts = {
 		"movement_interval":1.5,
 		"drink": {
 			"base": [DrinkType.RUM, DrinkType.RUM, DrinkType.RUM],
-			"topping": ToppingType.TOPPING1
+			"topping": ToppingType.TOPPING1,
+			"order":"Ahoy. I wants lots o' rum or I'll scuttle ye, savvy?",
 		}
+
 	},
 	"2": {
 		"movement_weight":75,
