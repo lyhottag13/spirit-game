@@ -345,12 +345,13 @@ func _handle_serve() -> void:
 	var bar_scene := current_scene as Bar
 	
 	# Swaps the customer using the new customer's texture, which should already be set at this point.
+	# Awaits because the customer swapping takes some time and
 	await bar_scene.swap_customer(current_ghost.texture)
 	
-	# Shows dialogue, since it is now showable.
+	# Shows dialogue, since the player will need to see the order.
 	dialogue.show()
 	
-	# Allows the user to switch scenes again.
+	# Allows the player to switch scenes again.
 	scene_switcher.set_enabled(true)
 
 
