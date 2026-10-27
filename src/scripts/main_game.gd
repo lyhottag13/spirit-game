@@ -6,12 +6,12 @@ const TOPPING = preload("uid://co61gy3pe3qm8")
 const DRINK_SELECTED_MENU = preload("uid://c3b0oklocj8vt")
 const TOPPING_SELECTED_MENU = preload("uid://v4kgp8fow7ge")
 
-@onready var dialogue: Control = $GUI/Dialogue
+@onready var dialogue: Dialogue = %Dialogue as Dialogue
 @onready var gui: CanvasLayer = %GUI
-@onready var scene_switcher: SceneSwitcher = $GUI/SceneSwitcher
+@onready var scene_switcher: SceneSwitcher = %SceneSwitcher as SceneSwitcher
 @onready var world: Node2D = %World
-@onready var mix_menu: MixMenu = $GUI/MixMenu as MixMenu
-@onready var topping_menu: ToppingMenu = $GUI/ToppingMenu as ToppingMenu
+@onready var mix_menu: MixMenu = %MixMenu as MixMenu
+@onready var topping_menu: ToppingMenu = %ToppingMenu as ToppingMenu
 
 var customer_num: int = 0 # which customer is the player on?
 var current_ghost: Classes.Ghost
@@ -45,7 +45,7 @@ func _ready() -> void:
 	scene_switcher.set_pointing_to("drinks")
 	
 	# Sets up the first customer as the pirate.
-	select_new_customer(ghost_db.pirate)
+	select_new_ghost(ghost_db.pirate)
 	
 	# Sets up custom mouse cursors
 	var cursor_idle = preload("uid://dhcdqy41eqhsh")
@@ -56,7 +56,7 @@ func _ready() -> void:
 
 
 ## Selects a new (optionally random) customr and changes the dialogue text.
-func select_new_customer(p_ghost: Classes.Ghost = null) -> void: 
+func select_new_ghost(p_ghost: Classes.Ghost = null) -> void: 
 	# Assigns the ghost to the parameter ghost.
 	var chosen_ghost: Classes.Ghost = p_ghost
 	
@@ -80,7 +80,7 @@ func select_new_customer(p_ghost: Classes.Ghost = null) -> void:
 	)
 	
 	# Sets up the dialogue using the current customer.
-	dialogue.change_text(current_ghost.order)
+	dialogue.change_text(current_ghost.name, current_ghost.order)
 
 
 ## Switches the scene between the drinks station and the bar station.
@@ -338,8 +338,8 @@ func _handle_serve() -> void:
 	# Resets the current drink. SHOULD BE reset_drink() BUT THAT INCLUDES MIX SCENE BEHAVIOR!
 	current_drink = Classes.Drink.new()
 	
-	# Selects a new customer and changes the current_customer global.
-	select_new_customer()
+	# Selects a new ghost and changes the current_ghost global.
+	select_new_ghost()
 	
 	# Casts for error handling, even though current_scene should always be Bar.
 	var bar_scene := current_scene as Bar
@@ -373,6 +373,7 @@ func test_drink() -> bool:
 	var desired_topping = current_ghost.drink.topping
 	
 	# Compares the hash of the bases to test for array equality
+	# Drink MUST BE IDENTICAL to the desired drink.
 	var is_drink_good = current_base.hash() == desired_base.hash() and current_topping == desired_topping
 	
 	return is_drink_good

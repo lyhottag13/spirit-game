@@ -39,19 +39,19 @@ centered = false
 unique_name_in_owner = true
 
 [node name="MixMenu" parent="GUI" unique_id=1713630294 instance=ExtResource("3_m7syd")]
+unique_name_in_owner = true
 visible = false
 
 [node name="Dialogue" parent="GUI" unique_id=1311503088 instance=ExtResource("4_m7syd")]
-offset_left = 492.0
-offset_top = 585.0
-offset_right = 492.0
-offset_bottom = 585.0
+unique_name_in_owner = true
 mouse_filter = 2
 
 [node name="ToppingMenu" parent="GUI" unique_id=404569553 instance=ExtResource("5_c5f53")]
+unique_name_in_owner = true
 visible = false
 
 [node name="SceneSwitcher" parent="GUI" unique_id=1862007015 instance=ExtResource("3_r3nyt")]
+unique_name_in_owner = true
 
 [connection signal="mix_pressed" from="GUI/MixMenu" to="." method="_on_mix_menu_mix_pressed"]
 [connection signal="trash_pressed" from="GUI/MixMenu" to="." method="_on_mix_menu_trash_pressed"]

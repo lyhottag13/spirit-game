@@ -55,4 +55,17 @@ var random_ghosts: Array[Classes.Ghost] = [
 			Classes.ToppingType.TOPPING1,
 		),
 	),
+	Classes.Ghost.new(
+		"Elmer",
+		"Give me all syrup. I love syrup.",
+		preload("uid://c8pt4jstkgogc"),
+		Classes.Drink.new(
+			[
+				Classes.DrinkType.SYRUP,
+				Classes.DrinkType.SYRUP,
+				Classes.DrinkType.SYRUP,
+			],
+			Classes.ToppingType.TOPPING1,
+		),
+	),
 ]

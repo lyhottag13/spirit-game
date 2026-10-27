@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://cno7rowdfm38f"]
+
+[ext_resource type="FontFile" uid="uid://b87ui1s555h6o" path="res://src/resources/themes/Oakla.ttf" id="1_d56p5"]
+
+[resource]
+default_font = ExtResource("1_d56p5")
+default_font_size = 44
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
