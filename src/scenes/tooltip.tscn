@@ -1,6 +1,16 @@
 [gd_scene format=3 uid="uid://dpo8resl6cwkm"]
 
 [ext_resource type="Script" uid="uid://bclad3qt5w183" path="res://src/scripts/tooltip.gd" id="1_btcjj"]
+[ext_resource type="Theme" uid="uid://cno7rowdfm38f" path="res://src/resources/themes/dialogue_theme.tres" id="2_41b3j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a4foc"]
+bg_color = Color(0, 0, 0, 0.3647059)
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [node name="Tooltip" type="Control" unique_id=1355192030]
 layout_mode = 3
@@ -14,8 +24,11 @@ script = ExtResource("1_btcjj")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=788719231]
 layout_mode = 0
-offset_right = 722.0
-offset_bottom = 500.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 772.0
+offset_bottom = 550.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_a4foc")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2137686157]
 layout_mode = 2
@@ -26,12 +39,16 @@ theme_override_constants/margin_top = 50
 layout_mode = 2
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2028955773]
+unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_41b3j")
 theme_override_font_sizes/font_size = 92
 text = "Drink name"
 
 [node name="Information" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2072478807]
+unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_41b3j")
 theme_override_font_sizes/font_size = 54
 text = "- Stuff 1
 - Stuff 2

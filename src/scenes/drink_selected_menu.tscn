@@ -7,6 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://hhctelspd7cf" path="res://src/resources/images/Pour_2.png" id="4_hljwg"]
 [ext_resource type="Texture2D" uid="uid://cs3y706fb1bab" path="res://src/resources/images/Cancel_2.png" id="6_a4foc"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_41b3j"]
+atlas = ExtResource("3_a4foc")
+region = Rect2(40, 30, 190, 340)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5jg8"]
+atlas = ExtResource("4_hljwg")
+region = Rect2(40, 30, 190, 340)
+
 [node name="DrinkSelectedMenu" type="Control" unique_id=1465867085]
 layout_mode = 3
 anchors_preset = 15
@@ -22,32 +30,21 @@ layout_mode = 1
 
 [node name="Pour" type="TextureButton" parent="." unique_id=1162989709]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -1197.0
-offset_top = 167.0
-offset_right = -937.0
-offset_bottom = 555.0
-grow_horizontal = 0
+offset_left = 814.0
+offset_top = 204.0
+offset_right = 989.0
+offset_bottom = 531.0
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("3_a4foc")
-texture_hover = ExtResource("4_hljwg")
-stretch_mode = 0
+texture_normal = SubResource("AtlasTexture_41b3j")
+texture_hover = SubResource("AtlasTexture_n5jg8")
+stretch_mode = 4
 
 [node name="Cancel" type="TextureButton" parent="." unique_id=2108879615]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1162.0
-offset_top = -1076.0
-offset_right = -957.0
-offset_bottom = -923.0
-grow_horizontal = 0
-grow_vertical = 0
+offset_left = 796.0
+offset_top = 44.0
+offset_right = 1001.0
+offset_bottom = 197.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("4_a4foc")
 texture_hover = ExtResource("6_a4foc")

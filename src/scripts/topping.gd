@@ -4,19 +4,11 @@ extends Node2D
 ## Tells the main game what topping was selected for the title.
 signal topping_selected(topping_type: String)
 
-enum Toppings {
-	TOPPING1,
-	TOPPING2,
-	TOPPING3,
-	TOPPING4,
-	NONE, # Required as it's impossible to assign null to an enum-type var
-}
+var selected_topping: Classes.ToppingType = Classes.ToppingType.NONE
 
-var selected_topping: Toppings = Toppings.NONE
-
-func _on_topping_clicked(topping_type: Toppings) -> void:
+func _on_topping_clicked(topping_type: Classes.ToppingType) -> void:
 	# Returns early if the topping isn't NONE, since that means we're currently deciding to pour or cancel.
-	if not selected_topping == Toppings.NONE:
+	if selected_topping != Classes.ToppingType.NONE:
 		return
 	
 	selected_topping = topping_type
@@ -28,12 +20,12 @@ func _on_topping_clicked(topping_type: Toppings) -> void:
 
 
 ## Tops the drink with the currently-selected topping.
-func top() -> Toppings:
+func top() -> Classes.ToppingType:
 	var returned_topping = selected_topping
-	selected_topping = Toppings.NONE
+	selected_topping = Classes.ToppingType.NONE
 	return returned_topping
 
 
 ## Cancels the topping and returns to a no-topping state.
 func cancel() -> void:
-	selected_topping = Toppings.NONE
+	selected_topping = Classes.ToppingType.NONE

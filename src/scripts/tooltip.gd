@@ -1,8 +1,8 @@
 class_name Tooltip
 extends Control
 
-@onready var title: Label = $PanelContainer/MarginContainer/VBoxContainer/Title
-@onready var information: Label = $PanelContainer/MarginContainer/VBoxContainer/Information
+@onready var title: Label = %Title
+@onready var information: Label = %Information
 
 func set_title(p_title: String) -> void:
 	
