@@ -14,8 +14,7 @@ const TOPPING_SELECTED_MENU = preload("uid://v4kgp8fow7ge")
 @onready var topping_menu: ToppingMenu = $GUI/ToppingMenu as ToppingMenu
 
 var customer_num: int = 0 # which customer is the player on?
-var customer_list = ["pirate"] # var for storing order of customer
-var current_customer: Customer
+var current_ghost: Classes.Ghost
 
 var current_scene: Node2D
 
@@ -26,45 +25,8 @@ enum DrinkStation {
 
 var current_drink_station: DrinkStation = DrinkStation.MIX
 
-enum ToppingType {
-	TOPPING1,
-	TOPPING2,
-	TOPPING3,
-	TOPPING4,
-	NONE, # Required as it's impossible to assign null to an enum-type var
-}
-
-enum DrinkType {
-	VODKA,
-	SYRUP,
-	BLOOD,
-	WHISKEY,
-	GIN,
-	RUM,
-	NONE, # Required as it's impossible to assign null to an enum-type var
-}
-
-## Custom data type to hold drink information.
-class Drink:
-	## Stores the drink's base, should only go up to three.
-	var base: Array = []
-	
-	## Stores the drink's current topping. There's only one.
-	var topping: ToppingType = ToppingType.NONE
-
-## Custom data type to hold information relevant to a customer.
-class Customer:
-	## Stores the customer's name.
-	var name : String
-	
-	## Stores the customer's order.
-	var text: String
-
 ## Stores the drink that the player is making.
-var current_drink := Drink.new()
-
-## Stores the drink that the customer wants.
-var current_desired_drink: Drink
+var current_drink := Classes.Drink.new()
 
 ## Stores the player's score. Positive is good, negative is bad.
 var reputation := 0
@@ -77,19 +39,13 @@ func _input(event: InputEvent) -> void:
 
 
 func _ready() -> void:
+	# Sets up the bar.
 	current_scene = BAR.instantiate()
 	world.add_child(current_scene)
 	scene_switcher.set_pointing_to("drinks")
 	
-	var ghost_drink := ghost_db.ghosts["pirate"]["drink"] as Dictionary
-	var ghost_base = ghost_drink.base as Array[DrinkType]
-	print_debug(ghost_drink.base)
-	
-	# Initializes the desired drink with the pirate's desired drink.
-	current_desired_drink = Drink.new()
-	current_desired_drink.base = ghost_base
-	#current_desired_drink.base = [DrinkType.RUM, DrinkType.RUM, DrinkType.RUM]
-	current_desired_drink.topping = ghost_drink.topping
+	# Sets up the first customer as the pirate.
+	select_new_customer(ghost_db.pirate)
 	
 	# Sets up custom mouse cursors
 	var cursor_idle = preload("uid://dhcdqy41eqhsh")
@@ -99,13 +55,32 @@ func _ready() -> void:
 	Input.set_custom_mouse_cursor(cursor_interactable, Input.CURSOR_POINTING_HAND)
 
 
-## Makes current customer object and sets order text.
-func new_customer(): 
-	var ghost = ghost_db.ghosts[customer_list[customer_num]]
-	current_customer = Customer.new()
-	current_customer.text = ghost["order"]
-	current_customer.name = customer_list[customer_num]
-	dialogue.change_text(current_customer.text)
+## Selects a new (optionally random) customr and changes the dialogue text.
+func select_new_customer(p_ghost: Classes.Ghost = null) -> void: 
+	# Assigns the ghost to the parameter ghost.
+	var chosen_ghost: Classes.Ghost = p_ghost
+	
+	# Checks if the parameter ghost wasn't specified.
+	if not p_ghost:
+		# Picks a random ghost from the random_ghosts array.
+		chosen_ghost = ghost_db.random_ghosts.pick_random()
+		
+		# Erases the chosen ghost from the array so they're not chosen again.
+		ghost_db.random_ghosts.erase(chosen_ghost)
+	
+	# Initializes the current_ghost object.
+	current_ghost = Classes.Ghost.new(
+		chosen_ghost.name,
+		chosen_ghost.order,
+		chosen_ghost.texture,
+		Classes.Drink.new(
+			chosen_ghost.drink.base,
+			chosen_ghost.drink.topping
+		)
+	)
+	
+	# Sets up the dialogue using the current customer.
+	dialogue.change_text(current_ghost.order)
 
 
 ## Switches the scene between the drinks station and the bar station.
@@ -179,7 +154,7 @@ func _on_mix_drink_selected(drink_type: String) -> void:
 
 func _on_drink_menu_poured() -> void:
 	var mix_scene = current_scene as Mix
-	var poured_drink: DrinkType = mix_scene.pour() as DrinkType
+	var poured_drink: Classes.DrinkType = mix_scene.pour() as Classes.DrinkType
 	
 	# Increments the meter in the mix menu by one unit
 	mix_menu.increment_meter()
@@ -230,7 +205,7 @@ func reset_drink() -> void:
 	mix_scene.replace_cup()
 	
 	# Resets the drink.
-	current_drink = Drink.new()
+	current_drink = Classes.Drink.new()
 
 
 func _on_mix_menu_mix_pressed() -> void:
@@ -278,7 +253,7 @@ func _on_topping_menu_serve_pressed() -> void:
 ## Handles the player selecting a topping in the topping station.
 func _on_topping_topping_selected(topping_type: String) -> void:
 	# Returns early to prevent new topping from being added when the topping has already been placed.
-	if current_drink.topping != ToppingType.NONE:
+	if current_drink.topping != Classes.ToppingType.NONE:
 		return
 	
 	var main_topping_menu := TOPPING_SELECTED_MENU.instantiate() as ToppingSelectedMenu
@@ -294,12 +269,12 @@ func _on_topping_topping_selected(topping_type: String) -> void:
 
 func _on_topping_menu_used() -> void:
 	var topping_scene = current_scene as Topping
-	var topping_used: ToppingType = topping_scene.top() as ToppingType
+	var topping_used: Classes.ToppingType = topping_scene.top() as Classes.ToppingType
 	
 	# Adds the used topping into the drink.
 	current_drink.topping = topping_used
 	
-	if current_drink.topping != ToppingType.NONE:
+	if current_drink.topping != Classes.ToppingType.NONE:
 		pass # Do something here to only allow mixing in the Mix menu.
 
 
@@ -345,6 +320,9 @@ func _handle_serve() -> void:
 	# Prevents the player from switching scenes.
 	scene_switcher.set_enabled(false)
 	
+	# Hides dialogue, since it is automatically shown upon switching.
+	dialogue.hide()
+	
 	# Checks whether the drink satisfies the order.
 	var is_satisfied = test_drink()
 	
@@ -358,18 +336,22 @@ func _handle_serve() -> void:
 	current_drink_station = DrinkStation.MIX
 	
 	# Resets the current drink. SHOULD BE reset_drink() BUT THAT INCLUDES MIX SCENE BEHAVIOR!
-	current_drink = Drink.new()
+	current_drink = Classes.Drink.new()
+	
+	# Selects a new customer and changes the current_customer global.
+	select_new_customer()
 	
 	# Casts for error handling, even though current_scene should always be Bar.
 	var bar_scene := current_scene as Bar
 	
-	# Handles new customer logic.
-	new_customer()
+	# Swaps the customer using the new customer's texture, which should already be set at this point.
+	await bar_scene.swap_customer(current_ghost.texture)
+	
+	# Shows dialogue, since it is now showable.
+	dialogue.show()
 	
 	# Allows the user to switch scenes again.
 	scene_switcher.set_enabled(true)
-	scene_switcher.show()
-	
 
 
 ## Tests whether the drink meets the current customer's standards.
@@ -382,12 +364,12 @@ func test_drink() -> bool:
 	current_base.sort()
 	
 	# Stores the desired drink's base and sorts it for easy comparison.
-	var desired_base = current_desired_drink.base
+	var desired_base = current_ghost.drink.base
 	desired_base.sort()
 	
 	# Stores the toppings for easy access.
 	var current_topping = current_drink.topping
-	var desired_topping = current_desired_drink.topping
+	var desired_topping = current_ghost.drink.topping
 	
 	# Compares the hash of the bases to test for array equality
 	var is_drink_good = current_base.hash() == desired_base.hash() and current_topping == desired_topping

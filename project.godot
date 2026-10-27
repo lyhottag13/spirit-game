@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Classes="*uid://o2ov3e6oplya"
 move_list="*uid://crb2npkb1gn75"
 ghost_db="*uid://durotdvutyfj7"
 
