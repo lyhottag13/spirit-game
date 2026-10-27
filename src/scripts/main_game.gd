@@ -2,10 +2,11 @@ extends Node
 
 const BAR = preload("uid://bvkn4awiardov")
 const MIX = preload("uid://rswunmjp4n4w")
-const SHAKE = preload("uid://buj73vv3ikn4n")
+const SHAKE = preload("uid://o5s672jcawx5")
 const TOPPING = preload("uid://co61gy3pe3qm8")
 const DRINK_SELECTED_MENU = preload("uid://c3b0oklocj8vt")
 const TOPPING_SELECTED_MENU = preload("uid://v4kgp8fow7ge")
+const END_SCREEN = preload("uid://chcpsepuxd1sy")
 
 @onready var dialogue: Dialogue = %Dialogue as Dialogue
 @onready var gui: CanvasLayer = %GUI
@@ -369,20 +370,19 @@ func _handle_serve() -> void:
 	# Changes the bar's reputation depending on the drink's quality.
 	reputation += 1 if is_satisfied else -1
 	
-	# Resets the drink station to the Mix station.
-	current_drink_station = DrinkStation.MIX
-	
-	# Resets the current drink. SHOULD BE reset_drink() BUT THAT INCLUDES MIX SCENE BEHAVIOR!
-	current_drink = Classes.Drink.new()
-	
-	# Selects a new ghost and changes the current_ghost global.
-	select_new_ghost()
-	
 	# Casts for error handling, even though current_scene should always be Bar.
 	var bar_scene := current_scene as Bar
 	
 	# Gets rid of the old cup.
 	bar_scene.exit_cup()
+	
+	# Checks if there are more customers available. If not, game's over.
+	if ghost_db.random_ghosts.size() == 0:
+		_handle_ending()
+		return
+	
+	# Selects a new ghost and changes the current_ghost global.
+	select_new_ghost()
 	
 	# Swaps the customer using the new customer's texture, which should already be set at this point.
 	# Awaits because the customer swapping takes some time.
@@ -390,6 +390,12 @@ func _handle_serve() -> void:
 	
 	# Shows dialogue, since the player will need to see the order.
 	dialogue.show()
+	
+	# Resets the drink station to the Mix station.
+	current_drink_station = DrinkStation.MIX
+	
+	# Resets the current drink. SHOULD BE reset_drink() BUT THAT INCLUDES MIX SCENE BEHAVIOR!
+	current_drink = Classes.Drink.new()
 	
 	# Allows the player to switch scenes again.
 	scene_switcher.set_enabled(true)
@@ -417,3 +423,17 @@ func test_drink() -> bool:
 	var is_drink_good = current_base.hash() == desired_base.hash() and current_topping == desired_topping
 	
 	return is_drink_good
+
+
+func _handle_ending() -> void:
+	await (current_scene as Bar).exit_ghost()
+	
+	await get_tree().create_timer(2).timeout
+	
+	current_scene.queue_free()
+	
+	var end_screen: EndScreen = END_SCREEN.instantiate()
+	
+	gui.add_child(end_screen)
+	
+	end_screen.set_text("Your bar %s" % ("succeeded!" if reputation > 0 else "failed."))

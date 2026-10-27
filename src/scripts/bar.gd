@@ -42,7 +42,7 @@ func react_to_drink(good_reaction: bool):
 
 ## Moves the old customer out and the new customer in.
 func swap_customer(new_customer_texture: CompressedTexture2D) -> void:
-	await create_tween().tween_property(ghost, "position:x", -600, 3).set_trans(Tween.TRANS_QUAD).finished
+	await exit_ghost()
 	
 	# Assigns the new texture to the ghost object.
 	ghost.texture = new_customer_texture
@@ -52,6 +52,10 @@ func swap_customer(new_customer_texture: CompressedTexture2D) -> void:
 	
 	# Moves the ghost texture back to the center with the new texture.
 	await create_tween().tween_property(ghost, "position:x", 960, 3).set_trans(Tween.TRANS_QUAD).finished
+
+
+func exit_ghost() -> void:
+	await create_tween().tween_property(ghost, "position:x", -600, 3).set_trans(Tween.TRANS_QUAD).finished
 
 
 func set_ghost_texture(p_ghost_texture: CompressedTexture2D) -> void:
