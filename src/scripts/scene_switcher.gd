@@ -37,4 +37,4 @@ func set_pointing_to(pointing_to: String) -> void:
 
 func set_enabled(enabled: bool) -> void:
 	switcher.disabled = not enabled
-	switcher.modulate.a = 1 if enabled else DISABLED_ALPHA_VALUE
+	switcher.modulate.a = 1.0 if enabled else DISABLED_ALPHA_VALUE

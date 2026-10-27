@@ -1,10 +1,10 @@
 extends Node
 
 enum ToppingType {
-	TOPPING1,
-	TOPPING2,
-	TOPPING3,
-	TOPPING4,
+	MINT,
+	CHERRY,
+	EYEBALL,
+	BLOOD,
 	NONE, # Required as it's impossible to assign null to an enum-type var
 }
 

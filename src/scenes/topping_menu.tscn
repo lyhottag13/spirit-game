@@ -1,9 +1,16 @@
 [gd_scene format=3 uid="uid://43kxl7lrwakq"]
 
 [ext_resource type="Script" uid="uid://8t3fdn4up2ll" path="res://src/scripts/topping_menu.gd" id="1_sdl4i"]
+[ext_resource type="Texture2D" uid="uid://sto5ag0sh0g1" path="res://src/resources/images/Trash_1.png" id="2_ullfo"]
+[ext_resource type="Texture2D" uid="uid://cf7k46viporrk" path="res://src/resources/images/Trash_2.png" id="3_0nsrx"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7ilq"]
-bg_color = Color(0.85490197, 0, 0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8dyc"]
+atlas = ExtResource("2_ullfo")
+region = Rect2(35.20642, 56.70952, 327.95743, 147.58096)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn1t2"]
+atlas = ExtResource("3_0nsrx")
+region = Rect2(35.20642, 56.70952, 327.95743, 147.58096)
 
 [node name="ToppingMenu" type="Control" unique_id=404569553]
 layout_mode = 3
@@ -32,20 +39,22 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 107
 text = "Serve"
 
-[node name="Trash" type="Button" parent="." unique_id=1065612511]
+[node name="Trash" type="TextureButton" parent="." unique_id=1258439070]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 400.0
-offset_top = -246.0
-offset_right = 697.0
-offset_bottom = -91.0
+offset_left = -389.0
+offset_top = -994.0
+offset_right = -62.0
+offset_bottom = -847.0
+grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 107
-theme_override_styles/normal = SubResource("StyleBoxFlat_p7ilq")
-text = "Trash"
+texture_normal = SubResource("AtlasTexture_f8dyc")
+texture_hover = SubResource("AtlasTexture_dn1t2")
 
 [connection signal="pressed" from="Serve" to="." method="_on_serve_pressed"]
 [connection signal="pressed" from="Trash" to="." method="_on_trash_pressed"]

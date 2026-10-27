@@ -2,6 +2,18 @@
 
 [ext_resource type="Script" uid="uid://d313sb6df1h5x" path="res://src/scripts/topping_selected_menu.gd" id="1_a8hkp"]
 [ext_resource type="PackedScene" uid="uid://dpo8resl6cwkm" path="res://src/scenes/tooltip.tscn" id="2_a8hkp"]
+[ext_resource type="Texture2D" uid="uid://51vvqfkcyre2" path="res://src/resources/images/Topping_Add_1.png" id="3_xe7uj"]
+[ext_resource type="Texture2D" uid="uid://8glx3pb7wnmc" path="res://src/resources/images/Topping_Add_2.png" id="4_vefva"]
+[ext_resource type="Texture2D" uid="uid://dudxcgt7380gd" path="res://src/resources/images/Cancel_1.png" id="5_2who6"]
+[ext_resource type="Texture2D" uid="uid://cs3y706fb1bab" path="res://src/resources/images/Cancel_2.png" id="6_c4r1b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7wsd"]
+atlas = ExtResource("3_xe7uj")
+region = Rect2(26.25528, 16.465057, 196.77661, 351.38477)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7rlf"]
+atlas = ExtResource("4_vefva")
+region = Rect2(26.25528, 16.465057, 196.77661, 351.38477)
 
 [node name="ToppingSelectedMenu" type="Control" unique_id=1597069159]
 layout_mode = 3
@@ -16,23 +28,23 @@ script = ExtResource("1_a8hkp")
 [node name="Tooltip" parent="." unique_id=1355192030 instance=ExtResource("2_a8hkp")]
 layout_mode = 1
 
-[node name="Use" type="Button" parent="." unique_id=1542081519]
+[node name="Use" type="TextureButton" parent="." unique_id=810775278]
 layout_mode = 0
-offset_left = 1394.0
-offset_top = 257.0
-offset_right = 1637.0
-offset_bottom = 443.0
-theme_override_font_sizes/font_size = 130
-text = "Use"
+offset_left = 806.0
+offset_top = 204.0
+offset_right = 1002.0
+offset_bottom = 555.0
+texture_normal = SubResource("AtlasTexture_s7wsd")
+texture_hover = SubResource("AtlasTexture_s7rlf")
 
-[node name="Cancel" type="Button" parent="." unique_id=2126919667]
+[node name="Cancel" type="TextureButton" parent="." unique_id=1998911526]
 layout_mode = 0
-offset_left = 1304.0
-offset_top = 668.0
-offset_right = 1728.0
-offset_bottom = 854.0
-theme_override_font_sizes/font_size = 130
-text = "Cancel"
+offset_left = 802.0
+offset_top = 44.0
+offset_right = 1007.0
+offset_bottom = 197.0
+texture_normal = ExtResource("5_2who6")
+texture_hover = ExtResource("6_c4r1b")
 
 [connection signal="pressed" from="Use" to="." method="_on_use_pressed"]
 [connection signal="pressed" from="Cancel" to="." method="_on_cancel_pressed"]

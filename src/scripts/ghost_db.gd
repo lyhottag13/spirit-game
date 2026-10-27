@@ -10,36 +10,36 @@ var pirate: Classes.Ghost = Classes.Ghost.new(
 			Classes.DrinkType.RUM,
 			Classes.DrinkType.RUM,
 		],
-		Classes.ToppingType.TOPPING1,
+		Classes.ToppingType.MINT,
 	),
 )
 
 ## Stores the randomized ghosts in an array for easy access using pick_random()
 var random_ghosts: Array[Classes.Ghost] = [
 	Classes.Ghost.new(
-		"Bob",
-		"Vodka, rum, whiskey, and 1.",
-		preload("uid://c8pt4jstkgogc"),
+		"Vlad",
+		"Give me one, two, three pours of whiskey. Ah-ah-ah!\nAnd don't forget to give it my favorite topping.",
+		preload("uid://bvh4q06xxcxv5"),
 		Classes.Drink.new(
 			[
 				Classes.DrinkType.VODKA,
 				Classes.DrinkType.RUM,
 				Classes.DrinkType.WHISKEY,
 			],
-			Classes.ToppingType.TOPPING1,
+			Classes.ToppingType.MINT,
 		),
 	),
 	Classes.Ghost.new(
-		"Julie",
-		"Vodka all the way and 1.",
-		preload("uid://c8pt4jstkgogc"),
+		"Glarie",
+		"I don't see myself liking your drink unless...Vodka.\nAnd blah blah blah.",
+		preload("uid://cibi7edi4hbmv"),
 		Classes.Drink.new(
 			[
 				Classes.DrinkType.VODKA,
 				Classes.DrinkType.VODKA,
 				Classes.DrinkType.VODKA,
 			],
-			Classes.ToppingType.TOPPING1,
+			Classes.ToppingType.MINT,
 		),
 	),
 	Classes.Ghost.new(
@@ -52,12 +52,12 @@ var random_ghosts: Array[Classes.Ghost] = [
 				Classes.DrinkType.GINGER,
 				Classes.DrinkType.RUM,
 			],
-			Classes.ToppingType.TOPPING1,
+			Classes.ToppingType.MINT,
 		),
 	),
 	Classes.Ghost.new(
 		"Elmer",
-		"Give me all syrup. I love syrup.",
+		"Give me all syrup. I love syrup.\nAnd mint, too.",
 		preload("uid://c8pt4jstkgogc"),
 		Classes.Drink.new(
 			[
@@ -65,7 +65,7 @@ var random_ghosts: Array[Classes.Ghost] = [
 				Classes.DrinkType.SYRUP,
 				Classes.DrinkType.SYRUP,
 			],
-			Classes.ToppingType.TOPPING1,
+			Classes.ToppingType.MINT,
 		),
 	),
 ]

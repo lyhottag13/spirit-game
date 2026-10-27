@@ -5,13 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://bu3wrkgwmpo48" path="res://src/resources/images/Topping_Cherry.png" id="3_tbtnn"]
 [ext_resource type="Texture2D" uid="uid://dmnrchdg87yyu" path="res://src/resources/images/Bar_Top_Empty.png" id="3_upqdo"]
 [ext_resource type="Texture2D" uid="uid://wd2ssplty3jg" path="res://src/resources/images/Mix_Background.png" id="4_tbtnn"]
-
-[sub_resource type="Gradient" id="Gradient_s7rlf"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_s7wsd"]
-gradient = SubResource("Gradient_s7rlf")
+[ext_resource type="Texture2D" uid="uid://cehhyyar7oaq8" path="res://src/resources/images/Glass_Cup_Back.png" id="6_pxvxp"]
+[ext_resource type="Texture2D" uid="uid://dpx0wa3gkv58p" path="res://src/resources/images/Topping_Eyeballs.png" id="6_vovy6"]
+[ext_resource type="Texture2D" uid="uid://dv0672tqt6qny" path="res://src/resources/images/Glass_Cup_Fill.png" id="7_ko42s"]
+[ext_resource type="Texture2D" uid="uid://cydg17gpf7ds2" path="res://src/resources/images/Blood.png" id="7_xxm0p"]
+[ext_resource type="Texture2D" uid="uid://dtjhuwef3mm1g" path="res://src/resources/images/Glass_Cup_Front.png" id="8_vovy6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_215jv"]
 atlas = ExtResource("2_obmyh")
@@ -19,11 +17,6 @@ region = Rect2(31.100021, 20.745235, 264, 312.7588)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dgict"]
 atlas = ExtResource("3_tbtnn")
-
-[sub_resource type="Gradient" id="Gradient_168y2"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_s7rlf"]
-gradient = SubResource("Gradient_168y2")
 
 [node name="Topping" type="Node2D" unique_id=229168026]
 script = ExtResource("1_168y2")
@@ -36,21 +29,16 @@ centered = false
 texture = ExtResource("3_upqdo")
 centered = false
 
-[node name="Drink" type="Sprite2D" parent="." unique_id=1809839358]
-position = Vector2(954, 563)
-scale = Vector2(6.320312, 9.203125)
-texture = SubResource("GradientTexture2D_s7wsd")
-
 [node name="TextureButton" type="TextureButton" parent="." unique_id=2066987732]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 11.0
-offset_top = 391.0
-offset_right = 405.0
-offset_bottom = 856.63635
+offset_left = 149.0
+offset_top = 528.0
+offset_right = 413.0
+offset_bottom = 840.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = SubResource("AtlasTexture_215jv")
@@ -62,10 +50,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 386.0
-offset_top = 428.0
-offset_right = 736.0
-offset_bottom = 861.89514
+offset_left = 446.0
+offset_top = 533.0
+offset_right = 713.0
+offset_bottom = 864.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = SubResource("AtlasTexture_dgict")
@@ -77,13 +65,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 1333.0
-offset_top = 558.0
-offset_right = 1458.8988
-offset_bottom = 679.0
+offset_left = 1195.9495
+offset_top = 659.0
+offset_right = 1595.9495
+offset_bottom = 863.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = SubResource("GradientTexture2D_s7rlf")
+texture_normal = ExtResource("6_vovy6")
 stretch_mode = 0
 
 [node name="TextureButton4" type="TextureButton" parent="." unique_id=1495827062]
@@ -92,14 +80,32 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 1629.0
-offset_top = 558.0
-offset_right = 1754.8988
-offset_bottom = 679.0
+offset_left = 1584.0
+offset_top = 560.0
+offset_right = 1884.0
+offset_bottom = 860.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = SubResource("GradientTexture2D_s7rlf")
+texture_normal = ExtResource("7_xxm0p")
 stretch_mode = 0
+
+[node name="Drink" type="Node2D" parent="." unique_id=282660004]
+position = Vector2(960, 662)
+
+[node name="DrinkBack" type="Sprite2D" parent="Drink" unique_id=523426503]
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("6_pxvxp")
+
+[node name="DrinkFill" type="Sprite2D" parent="Drink" unique_id=203896863]
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("7_ko42s")
+
+[node name="Topping" type="Sprite2D" parent="Drink" unique_id=17962654]
+unique_name_in_owner = true
+
+[node name="DrinkFront" type="Sprite2D" parent="Drink" unique_id=1809839358]
+scale = Vector2(1.3999999, 1.3999999)
+texture = ExtResource("8_vovy6")
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_topping_clicked" binds= [0]]
 [connection signal="pressed" from="TextureButton2" to="." method="_on_topping_clicked" binds= [1]]

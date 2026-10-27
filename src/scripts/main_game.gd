@@ -116,6 +116,9 @@ func switch_scene():
 			new_scene = BAR.instantiate() as Bar
 			scene_switcher.set_pointing_to("drinks")
 			
+			# Sets the correct ghost texture.
+			new_scene.set_ghost_texture(current_ghost.texture)
+			
 			# Shows and hides the menus for each scene.
 			mix_menu.hide()
 			topping_menu.hide()
