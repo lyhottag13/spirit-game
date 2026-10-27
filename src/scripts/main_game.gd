@@ -44,12 +44,20 @@ enum DrinkType {
 	NONE, # Required as it's impossible to assign null to an enum-type var
 }
 
+## Custom data type to hold drink information.
 class Drink:
+	## Stores the drink's base, should only go up to three.
 	var base: Array = []
+	
+	## Stores the drink's current topping. There's only one.
 	var topping: ToppingType = ToppingType.NONE
 
+## Custom data type to hold information relevant to a customer.
 class Customer:
+	## Stores the customer's name.
 	var name : String
+	
+	## Stores the customer's order.
 	var text: String
 
 ## Stores the drink that the player is making.
@@ -61,7 +69,7 @@ var current_desired_drink: Drink
 ## Stores the player's score. Positive is good, negative is bad.
 var reputation := 0
 
-# Automatically sets the window to fullscreen on mouse click for web builds.
+## Automatically sets the window to fullscreen on mouse click for web builds.
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed and DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN:
@@ -133,6 +141,7 @@ func switch_scene():
 			new_scene = BAR.instantiate() as Bar
 			scene_switcher.set_pointing_to("drinks")
 			
+			# Shows and hides the menus for each scene.
 			mix_menu.hide()
 			topping_menu.hide()
 			dialogue.show()
@@ -203,6 +212,8 @@ func _on_drink_menu_canceled() -> void:
 
 
 ## Resets the drink if the user trashes it or finishes the current customer.
+## The method's kind of finicky right now because I wrote it when we only needed Mix scene logic,
+## but now there's Topping scene logic to handle, too.
 func reset_drink() -> void:
 	var mix_scene := current_scene as Mix
 	mix_scene.cancel()
@@ -346,14 +357,14 @@ func _handle_serve() -> void:
 	# Resets the drink station to the Mix station.
 	current_drink_station = DrinkStation.MIX
 	
+	# Resets the current drink. SHOULD BE reset_drink() BUT THAT INCLUDES MIX SCENE BEHAVIOR!
+	current_drink = Drink.new()
+	
 	# Casts for error handling, even though current_scene should always be Bar.
 	var bar_scene := current_scene as Bar
 	
-	# REPLACE!!! We should be loading the incoming customer's PNG here.
-	await bar_scene.swap_customer(load("res://src/resources/images/Pirate_Ghost.png"))
-	
-	# Resets the current drink. SHOULD BE reset_drink() BUT THAT INCLUDES MIX SCENE BEHAVIOR!
-	current_drink = Drink.new()
+	# Handles new customer logic.
+	new_customer()
 	
 	# Allows the user to switch scenes again.
 	scene_switcher.set_enabled(true)
