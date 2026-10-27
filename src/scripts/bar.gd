@@ -22,9 +22,10 @@ func _ready() -> void:
 
 
 func loop_tween() -> void:
+	const HOVER_TIME = 1
 	ghost_tween = create_tween().set_loops()
-	ghost_tween.tween_property(ghost, "position:y", GHOST_Y_POSITION + 20, 1).set_trans(Tween.TRANS_SINE)
-	ghost_tween.tween_property(ghost, "position:y", GHOST_Y_POSITION - 20, 1).set_trans(Tween.TRANS_SINE)
+	ghost_tween.tween_property(ghost, "position:y", GHOST_Y_POSITION + 20, HOVER_TIME).set_trans(Tween.TRANS_SINE)
+	ghost_tween.tween_property(ghost, "position:y", GHOST_Y_POSITION - 20, HOVER_TIME).set_trans(Tween.TRANS_SINE)
 
 
 func react_to_drink(good_reaction: bool):

@@ -103,6 +103,7 @@ texture = ExtResource("7_ko42s")
 
 [node name="Topping" type="Sprite2D" parent="GlassCup" unique_id=17962654]
 unique_name_in_owner = true
+scale = Vector2(1.4, 1.4)
 
 [node name="GlassCupFront" type="Sprite2D" parent="GlassCup" unique_id=1809839358]
 scale = Vector2(1.3999999, 1.3999999)
