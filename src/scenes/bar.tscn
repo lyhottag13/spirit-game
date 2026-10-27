@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bs4leis8exogd" path="res://src/resources/images/Bar_Background_1.png" id="2_n5p6m"]
 [ext_resource type="Texture2D" uid="uid://c8pt4jstkgogc" path="res://src/resources/images/Pirate_Ghost.png" id="2_naoiu"]
 [ext_resource type="Texture2D" uid="uid://cs60ente6cm3v" path="res://src/resources/images/Bar_Background_2.png" id="3_7vavl"]
+[ext_resource type="Texture2D" uid="uid://sxa53rahk05t" path="res://src/resources/images/Bar_Top_Peanuts.png" id="6_7vavl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ilh63"]
 animations = [{
@@ -38,3 +39,7 @@ texture = ExtResource("2_naoiu")
 [node name="Bar" type="Sprite2D" parent="." unique_id=1441951464]
 texture = ExtResource("1_d4wn3")
 centered = false
+
+[node name="Peanuts" type="Sprite2D" parent="." unique_id=871285082]
+position = Vector2(345, 891)
+texture = ExtResource("6_7vavl")

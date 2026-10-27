@@ -338,16 +338,24 @@ func _handle_serve() -> void:
 	# Debug
 	print_debug("Served!")
 	
+	# Stores the cup node to place it in front of the customer.
+	var cup_node: Node2D = (current_scene as Topping).get_duplicated_cup_node()
+	
 	await (current_scene as Topping).exit_drink()
 	
 	# Swaps the scene back to the bar.
 	switch_scene()
+	
+	(current_scene as Bar).place_cup(cup_node)
 	
 	# Prevents the player from switching scenes.
 	scene_switcher.set_enabled(false)
 	
 	# Hides dialogue, since it is automatically shown upon switching.
 	dialogue.hide()
+	
+	# Holds the player in suspense. Was their drink good?
+	await get_tree().create_timer(2).timeout
 	
 	# Checks whether the drink satisfies the order.
 	var is_satisfied = test_drink()
@@ -370,8 +378,11 @@ func _handle_serve() -> void:
 	# Casts for error handling, even though current_scene should always be Bar.
 	var bar_scene := current_scene as Bar
 	
+	# Gets rid of the old cup.
+	bar_scene.exit_cup()
+	
 	# Swaps the customer using the new customer's texture, which should already be set at this point.
-	# Awaits because the customer swapping takes some time and
+	# Awaits because the customer swapping takes some time.
 	await bar_scene.swap_customer(current_ghost.texture)
 	
 	# Shows dialogue, since the player will need to see the order.

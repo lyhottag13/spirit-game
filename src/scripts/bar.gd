@@ -8,6 +8,9 @@ var ghost_tween: Tween
 ## Stores the ghost texture to be displayed. Defaults to Pirate.
 var ghost_texture: CompressedTexture2D = preload("uid://c8pt4jstkgogc")
 
+## Stores a reference to the cup if we've swapped from the topping scene.
+var cup
+
 @onready var ghost: Sprite2D = %Ghost
 
 func _ready() -> void:
@@ -40,3 +43,24 @@ func swap_customer(new_customer_texture: CompressedTexture2D) -> void:
 
 func set_ghost_texture(p_ghost_texture: CompressedTexture2D) -> void:
 	ghost_texture = p_ghost_texture
+
+
+func place_cup(cup_node: Node2D) -> void:
+	cup = cup_node
+	
+	add_child(cup_node)
+	
+	# Moves the cup node behind the peanuts.
+	move_child(cup, -2)
+	
+	# Places the cup in front of the customer at an adequate scale.
+	cup_node.position = Vector2(946, 813)
+	cup_node.scale = Vector2(0.4, 0.4)
+
+
+## Moves the drink to the left. Has a *chance* of failing if cup doesn't exist,
+## but Main Game calls this method after a serve, during which a cup always exists
+## on screen.
+func exit_cup() -> void:
+		await create_tween().tween_property(cup, "position:x", -300 , 3).set_trans(Tween.TRANS_QUAD).finished
+		cup.queue_free()

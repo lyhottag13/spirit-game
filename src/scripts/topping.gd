@@ -63,3 +63,9 @@ func enter_drink() -> void:
 
 func exit_drink() -> void:
 	await create_tween().tween_property(glass_cup, "position:x", DisplayServer.window_get_size().x + 300, 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).finished
+
+
+## Used by the Main Game to place the final cup in front of the customer.
+## This is only really useful to display the topping, the cup liquid shouldn't change much.
+func get_duplicated_cup_node() -> Node2D:
+	return glass_cup.duplicate()
