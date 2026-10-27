@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://buj73vv3ikn4n"]
+[gd_scene format=3 uid="uid://o5s672jcawx5"]
 
 [ext_resource type="Script" uid="uid://cso5xg483gh37" path="res://src/scripts/shake.gd" id="1_35t8m"]
 [ext_resource type="Texture2D" uid="uid://wd2ssplty3jg" path="res://src/resources/images/Mix_Background.png" id="2_o6noi"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d3rjk6bslvb8x" path="res://src/resources/images/Cup.png" id="4_o6noi"]
 [ext_resource type="Texture2D" uid="uid://dv0672tqt6qny" path="res://src/resources/images/Glass_Cup_Fill.png" id="5_43ica"]
 [ext_resource type="Texture2D" uid="uid://dtjhuwef3mm1g" path="res://src/resources/images/Glass_Cup_Front.png" id="6_od48p"]
+[ext_resource type="Theme" uid="uid://cno7rowdfm38f" path="res://src/resources/themes/dialogue_theme.tres" id="8_f7m1k"]
 
 [node name="Shake" type="Node2D" unique_id=1583350732]
 script = ExtResource("1_35t8m")
@@ -41,3 +42,11 @@ texture = ExtResource("5_43ica")
 [node name="GlassCupFront" type="Sprite2D" parent="GlassCup" unique_id=1623285018]
 scale = Vector2(1.3999999, 1.3999999)
 texture = ExtResource("6_od48p")
+
+[node name="Tutorial" type="Label" parent="." unique_id=416384138]
+offset_left = 172.0
+offset_top = 197.0
+offset_right = 841.0
+offset_bottom = 241.0
+theme = ExtResource("8_f7m1k")
+text = "Shake the cup using arrow keys!"

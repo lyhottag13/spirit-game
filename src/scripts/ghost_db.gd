@@ -18,7 +18,7 @@ var pirate: Classes.Ghost = Classes.Ghost.new(
 var random_ghosts: Array[Classes.Ghost] = [
 	Classes.Ghost.new(
 		"Vlad",
-		"Give me one, two, three pours of whiskey. Ah-ah-ah!\nAnd don't forget to give it my favorite topping.",
+		"Give me one, two, three pours of whiskey. Ah-ah-ah!\nAnd don't forget to give it my faaaavorite scarlet topping.",
 		preload("uid://bvh4q06xxcxv5"),
 		Classes.Drink.new(
 			[
@@ -31,7 +31,7 @@ var random_ghosts: Array[Classes.Ghost] = [
 	),
 	Classes.Ghost.new(
 		"Glarie",
-		"I don't see myself liking your drink unless...Vodka.\nAnd blah blah blah.",
+		"I don't see myself liking your drink unless... Vodka.\nAnd blah blah blah.",
 		preload("uid://cibi7edi4hbmv"),
 		Classes.Drink.new(
 			[

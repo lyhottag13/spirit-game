@@ -27,6 +27,19 @@ func loop_tween() -> void:
 	ghost_tween.tween_property(ghost, "position:y", GHOST_Y_POSITION - 20, 1).set_trans(Tween.TRANS_SINE)
 
 
+func react_to_drink(good_reaction: bool):
+	if not good_reaction:
+		var angry_tween: Tween = create_tween().set_loops(3).set_trans(Tween.TRANS_SINE)
+		angry_tween.tween_property(ghost, "position:x", ghost.position.x + 20, 0.2)
+		angry_tween.tween_property(ghost, "position:x", ghost.position.x - 20, 0.2)
+		await angry_tween.finished
+		
+		# Resets the ghost back to their original position.
+		await create_tween().set_trans(Tween.TRANS_SINE).tween_property(ghost, "position:x", ghost.position.x + 20, 0.2)
+	
+	# Lets the player stew in their drink-making choices for a bit.
+	await get_tree().create_timer(1).timeout
+
 ## Moves the old customer out and the new customer in.
 func swap_customer(new_customer_texture: CompressedTexture2D) -> void:
 	await create_tween().tween_property(ghost, "position:x", -600, 3).set_trans(Tween.TRANS_QUAD).finished

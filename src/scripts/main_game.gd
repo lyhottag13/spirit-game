@@ -360,6 +360,9 @@ func _handle_serve() -> void:
 	# Checks whether the drink satisfies the order.
 	var is_satisfied = test_drink()
 	
+	# Makes the ghost react to the drink. Good and bad reactions are similar.
+	await (current_scene as Bar).react_to_drink(is_satisfied)
+	
 	# Debug
 	print_debug(is_satisfied)
 	
