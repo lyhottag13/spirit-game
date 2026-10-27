@@ -52,10 +52,13 @@ class Customer:
 	var name : String
 	var text: String
 
+## Stores the drink that the player is making.
 var current_drink := Drink.new()
 
+## Stores the drink that the customer wants.
 var current_desired_drink: Drink
 
+## Stores the player's score. Positive is good, negative is bad.
 var reputation := 0
 
 # Automatically sets the window to fullscreen on mouse click for web builds.
@@ -63,10 +66,6 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed and DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-
-
-
-var current_drink = Drink.new()
 
 
 func _ready() -> void:
@@ -92,7 +91,8 @@ func _ready() -> void:
 	Input.set_custom_mouse_cursor(cursor_interactable, Input.CURSOR_POINTING_HAND)
 
 
-func new_customer(): #makes current customer object and sets order text 
+## Makes current customer object and sets order text.
+func new_customer(): 
 	var ghost = ghost_db.ghosts[customer_list[customer_num]]
 	current_customer = Customer.new()
 	current_customer.text = ghost["order"]
@@ -100,6 +100,8 @@ func new_customer(): #makes current customer object and sets order text
 	dialogue.change_text(current_customer.text)
 
 
+## Switches the scene between the drinks station and the bar station.
+## Not really useful outside of the scene switcher.
 func switch_scene():
 	var new_scene: Node2D
 	
@@ -120,7 +122,11 @@ func switch_scene():
 					new_scene = TOPPING.instantiate() as Topping
 					new_scene.topping_selected.connect(_on_topping_topping_selected)
 					topping_menu.show()
-					
+			
+			# Hides the dialogue from the player since it's only meant for the bar scene.
+			dialogue.hide()
+			
+			# Points the scene switcher to the bar.
 			scene_switcher.set_pointing_to("bar")
 			
 		elif current_scene is Mix or current_scene is Topping:
@@ -129,6 +135,7 @@ func switch_scene():
 			
 			mix_menu.hide()
 			topping_menu.hide()
+			dialogue.show()
 	
 	world.add_child(new_scene)
 	current_scene = new_scene
