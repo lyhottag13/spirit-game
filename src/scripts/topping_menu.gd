@@ -4,7 +4,7 @@ extends Control
 signal serve_pressed
 signal trash_pressed
 
-@onready var serve: Button = %Serve
+@onready var serve: TextureButton = %Serve
 @onready var trash: TextureButton = %Trash
 
 func _on_serve_pressed() -> void:

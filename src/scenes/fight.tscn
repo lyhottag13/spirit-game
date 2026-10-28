@@ -23,7 +23,7 @@ animations = [{
 
 [node name="Fight" type="Node2D" unique_id=376793696]
 script = ExtResource("1_8ppv3")
-increment = 200
+increment = 500
 decrement = -100
 
 [node name="Background" type="AnimatedSprite2D" parent="." unique_id=97250483]

@@ -23,11 +23,11 @@ var random_ghosts: Array[Classes.Ghost] = [
 		preload("uid://bvh4q06xxcxv5"),
 		Classes.Drink.new(
 			[
-				Classes.DrinkType.VODKA,
-				Classes.DrinkType.RUM,
+				Classes.DrinkType.WHISKEY,
+				Classes.DrinkType.WHISKEY,
 				Classes.DrinkType.WHISKEY,
 			],
-			Classes.ToppingType.MINT,
+			Classes.ToppingType.BLOOD,
 		),
 	),
 	Classes.Ghost.new(

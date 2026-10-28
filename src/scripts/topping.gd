@@ -13,8 +13,17 @@ var topping_textures: Dictionary[Classes.ToppingType, CompressedTexture2D] = {
 	Classes.ToppingType.BLOOD: preload("uid://c3r3is2wdr17c"),
 }
 
+## Stores the topping placed if the player swaps between the bar and topping scenes.
+var placed_topping: Classes.ToppingType
+
 @onready var topping: Sprite2D = %Topping
 @onready var glass_cup: Node2D = %GlassCup
+
+func _ready() -> void:
+	# Sets the topping's texture if the Main Game sets the topping before initialization
+	if placed_topping:
+		topping.texture = topping_textures[placed_topping]
+
 
 func _on_topping_clicked(topping_type: Classes.ToppingType) -> void:
 	# Returns early if the topping isn't NONE, since that means we're currently deciding to pour or cancel.
@@ -72,3 +81,7 @@ func exit_drink() -> void:
 ## This is only really useful to display the topping, the cup liquid shouldn't change much.
 func get_duplicated_cup_node() -> Node2D:
 	return glass_cup.duplicate()
+
+
+func set_topping(p_topping: Classes.ToppingType) -> void:
+	placed_topping = p_topping

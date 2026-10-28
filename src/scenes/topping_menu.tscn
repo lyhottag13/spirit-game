@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://43kxl7lrwakq"]
 
 [ext_resource type="Script" uid="uid://8t3fdn4up2ll" path="res://src/scripts/topping_menu.gd" id="1_sdl4i"]
+[ext_resource type="Texture2D" uid="uid://brf2xw5j54piv" path="res://src/resources/images/Topping_Serve_1.png" id="2_dn1t2"]
 [ext_resource type="Texture2D" uid="uid://sto5ag0sh0g1" path="res://src/resources/images/Trash_1.png" id="2_ullfo"]
 [ext_resource type="Texture2D" uid="uid://cf7k46viporrk" path="res://src/resources/images/Trash_2.png" id="3_0nsrx"]
+[ext_resource type="Texture2D" uid="uid://f34s67uyos21" path="res://src/resources/images/Topping_Serve_2.png" id="3_f8dyc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f8dyc"]
 atlas = ExtResource("2_ullfo")
@@ -22,7 +24,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_sdl4i")
 
-[node name="Serve" type="Button" parent="." unique_id=117410782]
+[node name="Serve" type="TextureButton" parent="." unique_id=610852821]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7
@@ -30,14 +32,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -97.5
-offset_top = -246.0
-offset_right = 97.5
-offset_bottom = -91.0
+offset_left = -260.5
+offset_top = -261.0
+offset_right = 260.5
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 107
-text = "Serve"
+texture_normal = ExtResource("2_dn1t2")
+texture_hover = ExtResource("3_f8dyc")
 
 [node name="Trash" type="TextureButton" parent="." unique_id=1258439070]
 unique_name_in_owner = true

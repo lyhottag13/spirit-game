@@ -107,6 +107,7 @@ func switch_scene():
 				DrinkStation.TOPPING:
 					new_scene = TOPPING.instantiate() as Topping
 					new_scene.topping_selected.connect(_on_topping_topping_selected)
+					new_scene.set_topping(current_drink.topping)
 					topping_menu.show()
 			
 			# Hides the dialogue from the player since it's only meant for the bar scene.
@@ -445,6 +446,9 @@ func _on_fight_fight_finished() -> void:
 	world.add_child(bar_scene)
 	
 	current_scene = bar_scene
+	
+	# Shows because the scene_switcher is hidden at this point.
+	scene_switcher.show()
 	
 	_handle_post_reaction()
 
