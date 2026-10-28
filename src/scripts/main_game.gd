@@ -264,6 +264,7 @@ func _on_shake_drink_shaken() -> void:
 	
 	# Shows the switcher for player interaction, since at this point it's hidden.
 	scene_switcher.show()
+	scene_switcher.set_enabled(true)
 
 
 ## Handles the player trashing their drink in the mixing station.
@@ -385,6 +386,8 @@ func _handle_serve() -> void:
 		current_scene = fight_scene
 		
 		world.add_child(fight_scene)
+		
+		scene_switcher.hide()
 	else:
 		# Gets rid of the old cup.
 		(current_scene as Bar).exit_cup()
