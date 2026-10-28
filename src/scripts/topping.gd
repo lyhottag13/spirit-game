@@ -59,6 +59,9 @@ func cancel() -> void:
 ## Slides the drink in from the left side of the screen.
 ## Only required when the game is swapping from the shake to the topping scene.
 func enter_drink() -> void:
+	# Teleports the cup off the screen, since by default it's already in the center.
+	glass_cup.position.x = -262
+	
 	await create_tween().tween_property(glass_cup, "position:x", DisplayServer.window_get_size().x / 2.0, 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).finished
 
 func exit_drink() -> void:

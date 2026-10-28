@@ -91,7 +91,7 @@ stretch_mode = 0
 
 [node name="GlassCup" type="Node2D" parent="." unique_id=282660004]
 unique_name_in_owner = true
-position = Vector2(-262, 662)
+position = Vector2(960, 662)
 
 [node name="GlassCupBack" type="Sprite2D" parent="GlassCup" unique_id=523426503]
 scale = Vector2(1.4, 1.4)
