@@ -162,6 +162,7 @@ func _on_mix_drink_selected(drink_type: String) -> void:
 
 
 func _on_drink_menu_poured() -> void:
+	await get_tree().create_timer(1).timeout
 	var mix_scene = current_scene as Mix
 	var poured_drink: Classes.DrinkType = mix_scene.pour() as Classes.DrinkType
 	
@@ -170,7 +171,7 @@ func _on_drink_menu_poured() -> void:
 	
 	# Addes the poured drink into the list of bases
 	current_drink.base.append(poured_drink)
-		
+	
 	# Sets the cup sprite to look full.
 	if current_drink.base.size() == 3:
 		mix_scene.set_drink_sprite(true)

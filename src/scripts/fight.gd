@@ -1,7 +1,8 @@
 extends Node
 @onready var spirit_bar: ColorRect = $CanvasLayer/ColorRect
 var wet:bool = false
-signal damaged(num)
+signal finished
+signal failed
 signal pressure_changed(pressure)
 
 @export var increment: int
@@ -23,6 +24,8 @@ func _ready() -> void:
 var spirit_health = 100.0
 
 func update_health():
+	if color_rect.size.x >= 1920:
+		emit_signal("finished")
 	var pressure = (color_rect.size.x / 1920)
 	pressure_changed.emit(pressure)
 
