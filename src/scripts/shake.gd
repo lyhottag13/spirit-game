@@ -22,8 +22,11 @@ var is_drink_done: bool = false
 ## Tracks where the shaker currently is.
 var shake_position: ShakePosition = ShakePosition.RIGHT
 
+@onready var shaker_whole: Node2D = %ShakerWhole
 @onready var shaker: Sprite2D = %Shaker
+@onready var shaker_top: Sprite2D = %ShakerTop
 @onready var glass_cup: Node2D = %GlassCup
+@onready var glass_cup_fill: Sprite2D = %GlassCupFill
 @onready var button_tutorial: AnimatedSprite2D = %ButtonTutorial
 
 func _process(_delta: float) -> void:
@@ -45,7 +48,7 @@ func _handle_shake(p_shake_position: ShakePosition) -> void:
 	shaker_tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	
 	# Moves the shaker to the new shake position.
-	shaker_tween.tween_property(shaker, "position:x", shaker.position.x + (200 if p_shake_position == ShakePosition.RIGHT else -200), 0.3)
+	shaker_tween.tween_property(shaker_whole, "position:x", shaker_whole.position.x + (200 if p_shake_position == ShakePosition.RIGHT else -200), 0.3)
 	
 	# Assigns the current shake position to the new shake position.
 	shake_position = p_shake_position
@@ -68,8 +71,14 @@ func _handle_drink_done() -> void:
 	# Copied straight from Mix.enter_cup()
 	await create_tween().tween_property(glass_cup, "position:x", DisplayServer.window_get_size().x / 2.0, SLIDE_TIME).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).finished
 	
+	# Moves shaker top away without await because we want it to happen at the same time as the next tween.
+	create_tween().tween_property(shaker_top, "position:x", -146, 0.4).set_trans(Tween.TRANS_QUAD)
+	
 	# Pours the drink into the cup.
-	await create_tween().tween_property(shaker, "rotation_degrees", -110, 2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT).finished
+	var pour_tween := create_tween().set_parallel()
+	pour_tween.tween_property(glass_cup_fill, "modulate:a", 1, 2)
+	pour_tween.tween_property(shaker, "rotation_degrees", -110, 2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	await pour_tween.finished
 	
 	# Copied straight from Mix.exit_cup()
 	await create_tween().tween_property(glass_cup, "position:x", DisplayServer.window_get_size().x + 600, SLIDE_TIME).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).finished

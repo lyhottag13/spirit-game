@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dtjhuwef3mm1g" path="res://src/resources/images/Glass_Cup_Front.png" id="6_od48p"]
 [ext_resource type="Texture2D" uid="uid://dllnk2yurir55" path="res://src/resources/images/Shake_Arrows_1.png" id="8_mh1cm"]
 [ext_resource type="Texture2D" uid="uid://dj4qyukm4yh36" path="res://src/resources/images/Shake_Arrows_2.png" id="9_43ica"]
+[ext_resource type="Texture2D" uid="uid://ybpsxcky645p" path="res://src/resources/images/Shake_Shaker_Lid.png" id="10_43ica"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s7wsd"]
 animations = [{
@@ -35,13 +36,6 @@ centered = false
 texture = ExtResource("3_f7m1k")
 centered = false
 
-[node name="Shaker" type="Sprite2D" parent="." unique_id=1038640471]
-unique_name_in_owner = true
-position = Vector2(1060, 372)
-rotation = -1.2479104
-texture = ExtResource("4_o6noi")
-offset = Vector2(120, 170)
-
 [node name="GlassCup" type="Node2D" parent="." unique_id=326193456]
 unique_name_in_owner = true
 position = Vector2(-257, 662)
@@ -51,6 +45,8 @@ scale = Vector2(1.4, 1.4)
 texture = ExtResource("4_mh1cm")
 
 [node name="GlassCupFill" type="Sprite2D" parent="GlassCup" unique_id=1659815907]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 scale = Vector2(1.4, 1.4)
 texture = ExtResource("5_43ica")
 
@@ -63,4 +59,20 @@ unique_name_in_owner = true
 position = Vector2(960, 720)
 sprite_frames = SubResource("SpriteFrames_s7wsd")
 autoplay = "default"
-frame_progress = 0.6388728
+frame_progress = 0.7037873
+
+[node name="ShakerWhole" type="Node2D" parent="." unique_id=1346385644]
+unique_name_in_owner = true
+position = Vector2(1060, 372)
+
+[node name="Shaker" type="Sprite2D" parent="ShakerWhole" unique_id=1038640471]
+unique_name_in_owner = true
+rotation = -1.2479104
+texture = ExtResource("4_o6noi")
+offset = Vector2(120, 170)
+
+[node name="ShakerTop" type="Sprite2D" parent="ShakerWhole" unique_id=1050962125]
+unique_name_in_owner = true
+position = Vector2(69.99999, -98.99999)
+rotation = -1.2479104
+texture = ExtResource("10_43ica")
