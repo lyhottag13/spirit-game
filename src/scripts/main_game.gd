@@ -4,6 +4,7 @@ const BAR = preload("uid://bvkn4awiardov")
 const MIX = preload("uid://rswunmjp4n4w")
 const SHAKE = preload("uid://o5s672jcawx5")
 const TOPPING = preload("uid://co61gy3pe3qm8")
+const FIGHT = preload("uid://duk7ril5efser")
 const DRINK_SELECTED_MENU = preload("uid://c3b0oklocj8vt")
 const TOPPING_SELECTED_MENU = preload("uid://v4kgp8fow7ge")
 const END_SCREEN = preload("uid://chcpsepuxd1sy")
@@ -375,6 +376,17 @@ func _handle_serve() -> void:
 	
 	# Gets rid of the old cup.
 	bar_scene.exit_cup()
+	
+	# Sets up fight scene for negative reaction.
+	var fight_scene = FIGHT.instantiate()
+	
+	current_scene.queue_free()
+	
+	current_scene = fight_scene
+	
+	world.add_child(current_scene)
+	
+	return
 	
 	# Checks if there are more customers available. If not, game's over.
 	if ghost_db.random_ghosts.size() == 0:

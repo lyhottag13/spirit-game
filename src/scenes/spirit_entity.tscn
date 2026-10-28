@@ -32,15 +32,16 @@ var radius = 15 # Distance ghost center stays from screen edge
 var current_pressure = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	movement_weight = ghost_db.ghosts[spirit_name][\"movement_weight\"]
-	teleport_weight = ghost_db.ghosts[spirit_name][\"teleport_weight\"]
-	special_weight = ghost_db.ghosts[spirit_name][\"special_weight\"]
-	base_difficulty = ghost_db.ghosts[spirit_name][\"difficulty\"]
-	speed = ghost_db.ghosts[spirit_name][\"speed\"]
-	panic = ghost_db.ghosts[spirit_name][\"panic\"]
-	accel_mult = ghost_db.ghosts[spirit_name][\"accel_mult\"]
-	move_interval = ghost_db.ghosts[spirit_name][\"movement_interval\"]
-	resize = ghost_db.ghosts[spirit_name][\"scale\"]
+	var current_ghost := Classes.Ghost.new()
+	movement_weight = current_ghost.fight_mode_data.movement_weight
+	teleport_weight = current_ghost.fight_mode_data.teleport_weight
+	special_weight = current_ghost.fight_mode_data.special_weight
+	base_difficulty = current_ghost.fight_mode_data.difficulty
+	speed = current_ghost.fight_mode_data.speed
+	panic = current_ghost.fight_mode_data.panic
+	accel_mult = current_ghost.fight_mode_data.accel_mult
+	move_interval = current_ghost.fight_mode_data.movement_interval
+	resize = current_ghost.fight_mode_data.scale
 	scale = Vector2(resize,resize)
 
 

@@ -40,7 +40,6 @@ func _process(delta: float) -> void:
 		color_rect.size.x += decrement * delta
 	update_health()
 
-	
 
 func _on_spirit_entity_wet() -> void:
 	wet = not wet

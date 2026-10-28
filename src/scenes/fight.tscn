@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://duk7ril5efser"]
+
+[ext_resource type="Script" uid="uid://tagx8gfmu3su" path="res://src/scripts/fight.gd" id="1_8ppv3"]
+[ext_resource type="PackedScene" uid="uid://co8xkftb3bsll" path="res://src/scenes/spirit_entity.tscn" id="2_h5cqv"]
+[ext_resource type="PackedScene" uid="uid://rfsqo1g5h5jc" path="res://src/scenes/watergun.tscn" id="3_vc0hp"]
+[ext_resource type="Texture2D" uid="uid://dvdvajbk36elv" path="res://Holy_Soaker.png" id="4_eaj2s"]
+
+[node name="Fight" type="Node2D" unique_id=376793696]
+script = ExtResource("1_8ppv3")
+increment = 200
+decrement = -100
+
+[node name="SpiritEntity" parent="." unique_id=355366846 instance=ExtResource("2_h5cqv")]
+z_index = 16
+position = Vector2(2, -3)
+
+[node name="WaterGun" parent="." unique_id=102644220 instance=ExtResource("3_vc0hp")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1629800187]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=834117226]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control" unique_id=1401821663]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 123.0
+offset_right = 20.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.7411765, 0.7411765, 0.7411765, 0.32156864)
+
+[node name="GunRotate" type="Node2D" parent="." unique_id=617962132]
+position = Vector2(1585, 799)
+
+[node name="TextureRect" type="TextureRect" parent="GunRotate" unique_id=1400416890]
+offset_left = -456.0
+offset_top = -372.99997
+offset_right = 444.0
+offset_bottom = 377.00003
+scale = Vector2(0.75, 0.75)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("4_eaj2s")
+
+[node name="point" type="Node2D" parent="GunRotate" unique_id=32603995]
+position = Vector2(-255, -130)
+
+[connection signal="pressure_changed" from="." to="SpiritEntity" method="_on_fight_mode_pressure_changed"]
+[connection signal="wet" from="SpiritEntity" to="." method="_on_spirit_entity_wet"]

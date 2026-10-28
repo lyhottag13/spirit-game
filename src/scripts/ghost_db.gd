@@ -12,6 +12,7 @@ var pirate: Classes.Ghost = Classes.Ghost.new(
 		],
 		Classes.ToppingType.MINT,
 	),
+	
 )
 
 ## Stores the randomized ghosts in an array for easy access using pick_random()
