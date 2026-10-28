@@ -31,6 +31,9 @@ var current_drink_station: DrinkStation = DrinkStation.MIX
 ## Stores the drink that the player is making.
 var current_drink := Classes.Drink.new()
 
+## Stores the cup node for easy recovery after the fight scene.
+var current_cup_node: Node2D
+
 ## Stores the player's score. Positive is good, negative is bad.
 var reputation := 0
 
@@ -341,14 +344,14 @@ func _handle_serve() -> void:
 	print_debug("Served!")
 	
 	# Stores the cup node to place it in front of the customer.
-	var cup_node: Node2D = (current_scene as Topping).get_duplicated_cup_node()
+	current_cup_node = (current_scene as Topping).get_duplicated_cup_node()
 	
 	await (current_scene as Topping).exit_drink()
 	
 	# Swaps the scene back to the bar.
 	switch_scene()
 	
-	(current_scene as Bar).place_cup(cup_node)
+	(current_scene as Bar).place_cup(current_cup_node)
 	
 	# Prevents the player from switching scenes.
 	scene_switcher.set_enabled(false)
@@ -371,46 +374,22 @@ func _handle_serve() -> void:
 	# Changes the bar's reputation depending on the drink's quality.
 	reputation += 1 if is_satisfied else -1
 	
-	# Casts for error handling, even though current_scene should always be Bar.
-	var bar_scene := current_scene as Bar
-	
-	# Gets rid of the old cup.
-	bar_scene.exit_cup()
-	
-	# Sets up fight scene for negative reaction.
-	var fight_scene = FIGHT.instantiate()
-	
-	current_scene.queue_free()
-	
-	current_scene = fight_scene
-	
-	world.add_child(current_scene)
-	
-	return
-	
-	# Checks if there are more customers available. If not, game's over.
-	if ghost_db.random_ghosts.size() == 0:
-		_handle_ending()
-		return
-	
-	# Selects a new ghost and changes the current_ghost global.
-	select_new_ghost()
-	
-	# Swaps the customer using the new customer's texture, which should already be set at this point.
-	# Awaits because the customer swapping takes some time.
-	await bar_scene.swap_customer(current_ghost.texture)
-	
-	# Shows dialogue, since the player will need to see the order.
-	dialogue.show()
-	
-	# Resets the drink station to the Mix station.
-	current_drink_station = DrinkStation.MIX
-	
-	# Resets the current drink. SHOULD BE reset_drink() BUT THAT INCLUDES MIX SCENE BEHAVIOR!
-	current_drink = Classes.Drink.new()
-	
-	# Allows the player to switch scenes again.
-	scene_switcher.set_enabled(true)
+	if not is_satisfied:
+		# Sets up fight scene for negative reaction.
+		var fight_scene = FIGHT.instantiate()
+		
+		# Connects the finished signal.
+		fight_scene.finished.connect(_on_fight_fight_finished)
+		
+		# Gets rid of the bar scene to make way for the fight scene.
+		current_scene.queue_free()
+		
+		# Sets the current_scene for easy access to the fight scene.
+		current_scene = fight_scene
+		
+		world.add_child(fight_scene)
+	else:
+		_handle_post_reaction()
 
 
 ## Tests whether the drink meets the current customer's standards.
@@ -449,3 +428,48 @@ func _handle_ending() -> void:
 	gui.add_child(end_screen)
 	
 	end_screen.set_text("Your bar %s" % ("succeeded!" if reputation > 0 else "failed."))
+
+
+## Handles finishing the fight with the ghost.
+func _on_fight_fight_finished() -> void:
+	current_scene.queue_free()
+	
+	var bar_scene: Bar = BAR.instantiate()
+	
+	# Sets the texture again because we queue freed the previous instance of the bar scene.
+	bar_scene.set_ghost_texture(current_ghost.texture)
+	
+	world.add_child(bar_scene)
+	
+	current_scene = bar_scene
+	
+	bar_scene.place_cup(current_cup_node)
+
+
+func _handle_post_reaction() -> void:
+	# Gets rid of the old cup.
+	(current_scene as Bar).exit_cup()
+	
+	# Checks if there are more customers available. If not, game's over.
+	if ghost_db.random_ghosts.size() == 0:
+		_handle_ending()
+		return
+	
+	# Selects a new ghost and changes the current_ghost global.
+	select_new_ghost()
+	
+	# Swaps the customer using the new customer's texture, which should already be set at this point.
+	# Awaits because the customer swapping takes some time.
+	await (current_scene as Bar).swap_customer(current_ghost.texture)
+	
+	# Shows dialogue, since the player will need to see the order.
+	dialogue.show()
+	
+	# Resets the drink station to the Mix station.
+	current_drink_station = DrinkStation.MIX
+	
+	# Resets the current drink. SHOULD BE reset_drink() BUT THAT INCLUDES MIX SCENE BEHAVIOR!
+	current_drink = Classes.Drink.new()
+	
+	# Allows the player to switch scenes again.
+	scene_switcher.set_enabled(true)

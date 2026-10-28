@@ -36,7 +36,7 @@ func react_to_drink(good_reaction: bool):
 		await angry_tween.finished
 		
 		# Resets the ghost back to their original position.
-		await create_tween().set_trans(Tween.TRANS_SINE).tween_property(ghost, "position:x", ghost.position.x + 20, 0.2)
+		await create_tween().set_trans(Tween.TRANS_SINE).tween_property(ghost, "position:x", ghost.position.x + 20, 0.2).finished
 	
 	# Lets the player stew in their drink-making choices for a bit.
 	await get_tree().create_timer(1).timeout
