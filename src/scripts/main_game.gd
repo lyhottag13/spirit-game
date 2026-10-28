@@ -31,9 +31,6 @@ var current_drink_station: DrinkStation = DrinkStation.MIX
 ## Stores the drink that the player is making.
 var current_drink := Classes.Drink.new()
 
-## Stores the cup node for easy recovery after the fight scene.
-var current_cup_node: Node2D
-
 ## Stores the player's score. Positive is good, negative is bad.
 var reputation := 0
 
@@ -162,7 +159,6 @@ func _on_mix_drink_selected(drink_type: String) -> void:
 
 
 func _on_drink_menu_poured() -> void:
-	await get_tree().create_timer(1).timeout
 	var mix_scene = current_scene as Mix
 	var poured_drink: Classes.DrinkType = mix_scene.pour() as Classes.DrinkType
 	
@@ -171,7 +167,7 @@ func _on_drink_menu_poured() -> void:
 	
 	# Addes the poured drink into the list of bases
 	current_drink.base.append(poured_drink)
-	
+		
 	# Sets the cup sprite to look full.
 	if current_drink.base.size() == 3:
 		mix_scene.set_drink_sprite(true)
@@ -345,14 +341,14 @@ func _handle_serve() -> void:
 	print_debug("Served!")
 	
 	# Stores the cup node to place it in front of the customer.
-	current_cup_node = (current_scene as Topping).get_duplicated_cup_node()
+	var cup_node: Node2D = (current_scene as Topping).get_duplicated_cup_node()
 	
 	await (current_scene as Topping).exit_drink()
 	
 	# Swaps the scene back to the bar.
 	switch_scene()
 	
-	(current_scene as Bar).place_cup(current_cup_node)
+	(current_scene as Bar).place_cup(cup_node)
 	
 	# Prevents the player from switching scenes.
 	scene_switcher.set_enabled(false)
@@ -390,6 +386,9 @@ func _handle_serve() -> void:
 		
 		world.add_child(fight_scene)
 	else:
+		# Gets rid of the old cup.
+		(current_scene as Bar).exit_cup()
+		
 		_handle_post_reaction()
 
 
@@ -444,13 +443,10 @@ func _on_fight_fight_finished() -> void:
 	
 	current_scene = bar_scene
 	
-	bar_scene.place_cup(current_cup_node)
+	_handle_post_reaction()
 
 
 func _handle_post_reaction() -> void:
-	# Gets rid of the old cup.
-	(current_scene as Bar).exit_cup()
-	
 	# Checks if there are more customers available. If not, game's over.
 	if ghost_db.random_ghosts.size() == 0:
 		_handle_ending()
