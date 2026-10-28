@@ -1,8 +1,7 @@
 extends Node
-@onready var spirit_bar: ColorRect = $CanvasLayer/ColorRect
+
 var wet:bool = false
 signal finished
-signal failed
 signal pressure_changed(pressure)
 
 @export var increment: int

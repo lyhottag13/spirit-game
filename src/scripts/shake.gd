@@ -24,6 +24,7 @@ var shake_position: ShakePosition = ShakePosition.RIGHT
 
 @onready var shaker: Sprite2D = %Shaker
 @onready var glass_cup: Node2D = %GlassCup
+@onready var button_tutorial: AnimatedSprite2D = %ButtonTutorial
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("shake_left"):
@@ -60,6 +61,8 @@ func _handle_drink_done() -> void:
 	# Sets a flag to prevent the player from shaking the shaker.
 	is_drink_done = true
 	
+	_hide_tutorial()
+	
 	const SLIDE_TIME = 0.4
 	
 	# Copied straight from Mix.enter_cup()
@@ -72,3 +75,7 @@ func _handle_drink_done() -> void:
 	await create_tween().tween_property(glass_cup, "position:x", DisplayServer.window_get_size().x + 600, SLIDE_TIME).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).finished
 	
 	drink_shaken.emit()
+
+
+func _hide_tutorial() -> void:
+	button_tutorial.hide()
