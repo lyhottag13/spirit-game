@@ -100,9 +100,10 @@ func move_drink() -> void:
 	bottle_tween.tween_property(selected_bottle, "position", FUTURE_DRINK_POSITION, SELECT_TIME)
 	bottle_tween.parallel().tween_property(selected_bottle, "scale", Vector2(1.4, 1.4), SELECT_TIME)
 	bottle_tween.parallel().tween_property(selected_bottle, "rotation_degrees", -54, SELECT_TIME)
-
+	
 
 func _reset_cup_transforms() -> void:
+	
 	# Kills the bottle_tween so that the repositioning doesn't bug the bottle.
 	if bottle_tween and bottle_tween.is_valid():
 		bottle_tween.kill()

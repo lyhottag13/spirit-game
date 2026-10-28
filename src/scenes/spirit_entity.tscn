@@ -28,7 +28,7 @@ var special_weight = 5
 
 var velocity = Vector2(200, 200).normalized() * speed
 
-var radius = 15 # Distance ghost center stays from screen edge
+var radius = 45 # Distance ghost center stays from screen edge
 var current_pressure = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

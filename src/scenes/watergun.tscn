@@ -43,7 +43,7 @@ func update_chunks(mouse: Vector2, delta: float):
 		point += perpendicular * chunk[\"offset\"] * offset_scale
 
 		sprite.global_position = point
-
+		sprite.visible = true
 		# Perspective scaling
 		var size = lerp(1.5, 0.35, t)
 		size *= chunk[\"size_mult\"]
@@ -67,7 +67,7 @@ func add_chunk():
 	var sprite = Sprite2D.new()
 	sprite.texture = CHUNK
 	sprite.rotation = randf_range(0.0, TAU)
-
+	sprite.visible = false
 	water_chunks.add_child(sprite)
 
 	chunks.append({
@@ -110,9 +110,13 @@ func _process(delta):
 	var mouse = get_global_mouse_position()
 
 	hit_box.global_position = mouse
-
-	update_chunk_count(mouse)
-	update_chunks(mouse, delta)
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		
+		update_chunks(mouse, delta)
+		update_chunk_count(mouse)
+	else:
+		while not chunks.is_empty():
+			remove_chunk()
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_64jkt"]
