@@ -38,6 +38,13 @@ func react_to_drink(good_reaction: bool):
 		# Resets the ghost back to their original position.
 		await create_tween().set_trans(Tween.TRANS_SINE).tween_property(ghost, "position:x", ghost.position.x + 20, 0.2).finished
 	
+	else:
+		var happy_tween: Tween = create_tween().set_trans(Tween.TRANS_SINE)
+		happy_tween.tween_property(ghost, "offset:y", ghost.offset.y + 20, 0.2)
+		happy_tween.tween_property(ghost, "offset:y", ghost.offset.y - 20, 0.2)
+		happy_tween.tween_property(ghost, "offset:y", ghost.offset.y + 20, 0.2)
+		await happy_tween.finished
+	
 	# Lets the player stew in their drink-making choices for a bit.
 	await get_tree().create_timer(1).timeout
 
