@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://gngnsmd71vbo"]
+
+[ext_resource type="Script" uid="uid://btoeh8bkcy6rj" path="res://src/scripts/main_menu.gd" id="1_rm437"]
+[ext_resource type="Texture2D" uid="uid://co8c0dl0xvvrq" path="res://src/resources/images/Main_Menu/Background.png" id="2_iaawh"]
+[ext_resource type="Theme" uid="uid://cno7rowdfm38f" path="res://src/resources/themes/dialogue_theme.tres" id="2_mob6k"]
+[ext_resource type="Texture2D" uid="uid://bbinjdwoxtdls" path="res://src/resources/images/Main_Menu/Graveyard_Shift.png" id="4_kp3xf"]
+
+[node name="MainMenu" type="Control" unique_id=444177623]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rm437")
+
+[node name="Background" type="TextureRect" parent="." unique_id=772241795]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_iaawh")
+
+[node name="Title" type="TextureRect" parent="." unique_id=455500225]
+layout_mode = 1
+offset_left = 55.0
+offset_top = 41.0
+offset_right = 1279.0
+offset_bottom = 449.0
+texture = ExtResource("4_kp3xf")
+
+[node name="Start" type="Button" parent="." unique_id=555161861]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 801.0
+offset_right = 330.0
+offset_bottom = 991.0
+grow_vertical = 0
+theme = ExtResource("2_mob6k")
+theme_override_font_sizes/font_size = 74
+text = "Start"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]

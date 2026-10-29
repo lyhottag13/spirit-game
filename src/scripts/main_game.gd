@@ -8,6 +8,7 @@ const FIGHT = preload("uid://duk7ril5efser")
 const DRINK_SELECTED_MENU = preload("uid://c3b0oklocj8vt")
 const TOPPING_SELECTED_MENU = preload("uid://v4kgp8fow7ge")
 const END_SCREEN = preload("uid://chcpsepuxd1sy")
+const MAIN_MENU = preload("uid://gngnsmd71vbo")
 
 @onready var dialogue: Dialogue = %Dialogue as Dialogue
 @onready var gui: CanvasLayer = %GUI
@@ -42,20 +43,28 @@ func _input(event: InputEvent) -> void:
 
 
 func _ready() -> void:
-	# Sets up the bar.
-	current_scene = BAR.instantiate()
-	world.add_child(current_scene)
-	scene_switcher.set_pointing_to("drinks")
-	
-	# Sets up the first customer as the pirate.
-	select_new_ghost(ghost_db.pirate)
-	
 	# Sets up custom mouse cursors
 	var cursor_idle = preload("uid://dhcdqy41eqhsh")
 	var cursor_interactable = preload("uid://coevld4vpf17c")
 	
 	Input.set_custom_mouse_cursor(cursor_idle)
 	Input.set_custom_mouse_cursor(cursor_interactable, Input.CURSOR_POINTING_HAND)
+	
+	var main_menu: MainMenu = MAIN_MENU.instantiate()
+	main_menu.start.connect(_start_game)
+	world.add_child(main_menu)
+
+
+func _start_game() -> void:
+	# Sets up the bar.
+	current_scene = BAR.instantiate()
+	world.add_child(current_scene)
+	scene_switcher.set_pointing_to("drinks")
+	scene_switcher.show()
+	dialogue.show()
+	
+	# Sets up the first customer as the pirate.
+	select_new_ghost(ghost_db.pirate)
 
 
 ## Selects a new (optionally random) customr and changes the dialogue text.
