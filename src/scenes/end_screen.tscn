@@ -2,6 +2,198 @@
 
 [ext_resource type="Script" uid="uid://bwnjmqol47pjb" path="res://src/scripts/end_screen.gd" id="1_7tot3"]
 [ext_resource type="Theme" uid="uid://cno7rowdfm38f" path="res://src/resources/themes/dialogue_theme.tres" id="2_lysiy"]
+[ext_resource type="Texture2D" uid="uid://bwduwo0ed7jjb" path="res://src/resources/images/Bad_End/Panel_1A.png" id="3_lysiy"]
+[ext_resource type="Texture2D" uid="uid://dkd7af130u1x8" path="res://src/resources/images/Bad_End/Panel_1B.png" id="4_gbuus"]
+[ext_resource type="Texture2D" uid="uid://dllxprrp0gu44" path="res://src/resources/images/Bad_End/Panel_2A.png" id="5_4l0jn"]
+[ext_resource type="Texture2D" uid="uid://bt0p0o1nnds3p" path="res://src/resources/images/Bad_End/Panel_2B.png" id="6_g8phn"]
+[ext_resource type="Texture2D" uid="uid://cjfcb2y6pk823" path="res://src/resources/images/Bad_End/Panel_3A.png" id="7_awaxt"]
+[ext_resource type="Texture2D" uid="uid://gal21jkayluv" path="res://src/resources/images/Bad_End/Panel_3B.png" id="8_lq8ki"]
+[ext_resource type="Texture2D" uid="uid://cc1wvfe86f1ok" path="res://src/resources/images/Bad_End/Panel_4A.png" id="9_xgnsd"]
+[ext_resource type="Texture2D" uid="uid://b6a3psreag8ev" path="res://src/resources/images/Bad_End/Panel_4B.png" id="10_evmkx"]
+[ext_resource type="Texture2D" uid="uid://1qc0670axxpp" path="res://src/resources/images/Bad_End/Panel_5A.png" id="11_3232d"]
+[ext_resource type="Texture2D" uid="uid://dqff43dl7x8cj" path="res://src/resources/images/Bad_End/Panel_5B.png" id="12_ah10s"]
+[ext_resource type="Texture2D" uid="uid://b3wmwj7siqdq3" path="res://src/resources/images/Bad_End/Panel_6A.png" id="13_rrql7"]
+[ext_resource type="Texture2D" uid="uid://by7wr1bstyrqb" path="res://src/resources/images/Bad_End/Panel_6B.png" id="14_6bk04"]
+[ext_resource type="Texture2D" uid="uid://c43i6jfe3g30c" path="res://src/resources/images/Good_End/Panel_1A.png" id="15_4o1cl"]
+[ext_resource type="Texture2D" uid="uid://daug37xxmhhg5" path="res://src/resources/images/Good_End/Panel_1B.png" id="16_g54ru"]
+[ext_resource type="Texture2D" uid="uid://bur2kx50l5jog" path="res://src/resources/images/Good_End/Panel_2A.png" id="17_4jl5u"]
+[ext_resource type="Texture2D" uid="uid://dxd34af600is4" path="res://src/resources/images/Good_End/Panel_2B.png" id="18_g8ghw"]
+[ext_resource type="Texture2D" uid="uid://b0cta3p7hhyv3" path="res://src/resources/images/Good_End/Panel_3A.png" id="19_rrj6x"]
+[ext_resource type="Texture2D" uid="uid://mrqo78c06sbj" path="res://src/resources/images/Good_End/Panel_3B.png" id="20_les15"]
+[ext_resource type="Texture2D" uid="uid://dcmvhhhdq1443" path="res://src/resources/images/Good_End/Panel_4A.png" id="21_3jlua"]
+[ext_resource type="Texture2D" uid="uid://drxlsyju6tdtt" path="res://src/resources/images/Good_End/Panel_4B.png" id="22_m1jlx"]
+[ext_resource type="Texture2D" uid="uid://cbib7nn6xlb31" path="res://src/resources/images/Good_End/Panel_5A.png" id="23_nbwr5"]
+[ext_resource type="Texture2D" uid="uid://cfvodproux2s6" path="res://src/resources/images/Good_End/Panel_5B.png" id="24_ewlca"]
+[ext_resource type="Texture2D" uid="uid://b0h1khn5cu6av" path="res://src/resources/images/Good_End/Panel_6A.png" id="25_7llg1"]
+[ext_resource type="Texture2D" uid="uid://cje2n2si0npp2" path="res://src/resources/images/Good_End/Panel_6B.png" id="26_eyb3t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s7wsd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lysiy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gbuus")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 1.5
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pa4p4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4l0jn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_g8phn")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 1.5
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4cpwh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_awaxt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_lq8ki")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 1.5
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ko3m6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_xgnsd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_evmkx")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 1.5
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j8pyb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_3232d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ah10s")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 1.5
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7vu3y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_rrql7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_6bk04")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 1.5
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uk1d2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_4o1cl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_g54ru")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l2shy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_4jl5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_g8ghw")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pvqme"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_rrj6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_les15")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3lltq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_3jlua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_m1jlx")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f0nf0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_nbwr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_ewlca")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mmxwc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_7llg1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_eyb3t")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="EndScreen" type="Control" unique_id=940335451]
 layout_mode = 3
@@ -23,6 +215,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="." unique_id=1090578723]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,3 +230,81 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_lysiy")
 text = "Your bar failed."
+
+[node name="BadEndPanels" type="Node2D" parent="." unique_id=1126582784]
+unique_name_in_owner = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BadEndPanels" unique_id=1065374754]
+modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_s7wsd")
+autoplay = "default"
+centered = false
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="BadEndPanels" unique_id=1639496060]
+modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_pa4p4")
+autoplay = "default"
+centered = false
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="BadEndPanels" unique_id=805042536]
+modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_4cpwh")
+autoplay = "default"
+centered = false
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="BadEndPanels" unique_id=167622235]
+modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_ko3m6")
+autoplay = "default"
+centered = false
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="BadEndPanels" unique_id=599572727]
+modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_j8pyb")
+autoplay = "default"
+centered = false
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="BadEndPanels" unique_id=1822236174]
+modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_7vu3y")
+autoplay = "default"
+centered = false
+
+[node name="GoodEndPanels" type="Node2D" parent="." unique_id=2116854787]
+unique_name_in_owner = true
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="GoodEndPanels" unique_id=45128022]
+modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_uk1d2")
+autoplay = "default"
+centered = false
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="GoodEndPanels" unique_id=1730063237]
+modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_l2shy")
+autoplay = "default"
+centered = false
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="GoodEndPanels" unique_id=329368181]
+modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_pvqme")
+autoplay = "default"
+centered = false
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="GoodEndPanels" unique_id=304297429]
+modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_3lltq")
+autoplay = "default"
+centered = false
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="GoodEndPanels" unique_id=2036745570]
+modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_f0nf0")
+autoplay = "default"
+centered = false
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="GoodEndPanels" unique_id=1549229858]
+modulate = Color(1, 1, 1, 0)
+sprite_frames = SubResource("SpriteFrames_mmxwc")
+autoplay = "default"
+centered = false

@@ -440,7 +440,11 @@ func _handle_ending() -> void:
 	
 	gui.add_child(end_screen)
 	
-	end_screen.set_text("Your bar %s" % ("succeeded!" if reputation > 0 else "failed."))
+	# Decides which ending to play based on reputation at the end of the game.
+	if reputation > 0:
+		end_screen.play_good_ending()
+	else:
+		end_screen.play_bad_ending()
 
 
 ## Handles finishing the fight with the ghost.
