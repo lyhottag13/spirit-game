@@ -5,10 +5,6 @@ extends Control
 @onready var bad_end_panels: Node2D = %BadEndPanels
 @onready var good_end_panels: Node2D = %GoodEndPanels
 
-func _ready() -> void:
-	play_bad_ending()
-
-
 func play_bad_ending() -> void:
 	_play_panels(bad_end_panels.get_children())
 
