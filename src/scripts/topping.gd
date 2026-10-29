@@ -32,21 +32,8 @@ func _on_topping_clicked(topping_type: Classes.ToppingType) -> void:
 	
 	selected_topping = topping_type
 	
-	var topping_to_emit: String
-
-	# Tells the MainGame what topping was selected.
-	match topping_type:
-		Classes.ToppingType.MINT:
-			topping_to_emit = "mint"
-		Classes.ToppingType.CHERRY:
-			topping_to_emit = "cherry"
-		Classes.ToppingType.EYEBALL:
-			topping_to_emit = "eyeball"
-		Classes.ToppingType.BLOOD:
-			topping_to_emit = "blood"
-	
 	# Emits the topping to MainGame.
-	topping_selected.emit(topping_to_emit)
+	topping_selected.emit(topping_type)
 	
 
 ## Tops the drink with the currently-selected topping.

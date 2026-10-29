@@ -145,7 +145,7 @@ func _on_scene_switcher_scene_switched() -> void:
 	switch_scene()
 
 
-func _on_mix_drink_selected(drink_type: String) -> void:
+func _on_mix_drink_selected(drink_type: Classes.DrinkType) -> void:
 	# Returns early to prevent new drinks from being added when the drink is full.
 	if current_drink.base.size() == 3:
 		return
@@ -161,7 +161,7 @@ func _on_mix_drink_selected(drink_type: String) -> void:
 	gui.add_child(drink_menu)
 	
 	# Sets the drink tooltip in the drink_menu.
-	drink_menu.set_tooltip(drink_type.capitalize(), "Default")
+	drink_menu.set_tooltip(TooltipDB.drink_database[drink_type].name, TooltipDB.drink_database[drink_type].info)
 	
 	# Disables the scene switcher so the player can't swap while selecting.
 	scene_switcher.set_enabled(false)
@@ -288,7 +288,7 @@ func _on_topping_menu_serve_pressed() -> void:
 
 
 ## Handles the player selecting a topping in the topping station.
-func _on_topping_topping_selected(topping_type: String) -> void:
+func _on_topping_topping_selected(topping_type: Classes.ToppingType) -> void:
 	# Returns early to prevent new topping from being added when the topping has already been placed.
 	if current_drink.topping != Classes.ToppingType.NONE:
 		return
@@ -300,8 +300,9 @@ func _on_topping_topping_selected(topping_type: String) -> void:
 	main_topping_menu.canceled.connect(_on_topping_menu_canceled)
 	gui.add_child(main_topping_menu)
 	print_debug(topping_type)
+	
 	# Sets the drink tooltip in the topping_menu.
-	main_topping_menu.set_tooltip(topping_type.capitalize(), "Default")
+	main_topping_menu.set_tooltip(TooltipDB.topping_database[topping_type].name, TooltipDB.topping_database[topping_type].info)
 	
 	topping_menu.set_enabled(false)
 	scene_switcher.set_enabled(false)

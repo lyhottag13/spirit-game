@@ -45,11 +45,11 @@ theme = ExtResource("2_41b3j")
 theme_override_font_sizes/font_size = 92
 text = "Drink name"
 
-[node name="Information" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2072478807]
+[node name="Information" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=123547842]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("2_41b3j")
-theme_override_font_sizes/font_size = 54
-text = "- Stuff 1
-- Stuff 2
-- Stuff 3"
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+text = "[ul]"

@@ -4,16 +4,6 @@ extends Node2D
 ## Tells the main game what drink was selected for the title.
 signal drink_selected(drink_type: String)
 
-enum Drinks {
-	VODKA,
-	SYRUP,
-	BLOOD,
-	WHISKEY,
-	GINGER,
-	RUM,
-	NONE, # Required as it's impossible to assign null to an enum-type var
-}
-
 ## Time in seconds for the drink to come to the cup when selected.
 const SELECT_TIME = 0.2
 
@@ -31,16 +21,16 @@ var selected_bottle: TextureButton
 
 
 ## Stores the drink TYPE selected.
-var selected_drink: Drinks = Drinks.NONE
+var selected_drink: Classes.DrinkType = Classes.DrinkType.NONE
 
 ## Stores the bottle's tween for easy killing.
 var bottle_tween: Tween
 
 @onready var cup: AnimatedSprite2D = %Cup
 
-func _on_drink_clicked(button: TextureButton, drink_type: Drinks) -> void:
+func _on_drink_clicked(button: TextureButton, drink_type: Classes.DrinkType) -> void:
 	# Returns early if the drink isn't NONE, since that means we're currently deciding to pour or cancel.
-	if not selected_drink == Drinks.NONE:
+	if not selected_drink == Classes.DrinkType.NONE:
 		return
 	
 	selected_drink = drink_type
@@ -51,32 +41,16 @@ func _on_drink_clicked(button: TextureButton, drink_type: Drinks) -> void:
 	old_drink_position = selected_bottle.position
 	old_scale = selected_bottle.scale
 	
-	var name_to_emit: String
-	
 	# Tells the MainGame what drink was selected
-	match drink_type:
-		Drinks.VODKA:
-			name_to_emit = "vodka"
-		Drinks.SYRUP:
-			name_to_emit = "syrup"
-		Drinks.BLOOD:
-			name_to_emit = "blood"
-		Drinks.WHISKEY:
-			name_to_emit = "whiskey"
-		Drinks.GINGER:
-			name_to_emit = "ginger"
-		Drinks.RUM:
-			name_to_emit = "rum"
-	
-	drink_selected.emit(name_to_emit)
+	drink_selected.emit(drink_type)
 	
 	# Moves the selected drink down on the scene tree so it overlaps the other drinks.
 	move_child(button, -2)
 
 
-func pour() -> Drinks:
+func pour() -> Classes.DrinkType:
 	var returned_drink = selected_drink
-	selected_drink = Drinks.NONE
+	selected_drink = Classes.DrinkType.NONE
 	
 	_reset_cup_transforms()
 	
@@ -84,7 +58,7 @@ func pour() -> Drinks:
 
 
 func cancel() -> void:
-	selected_drink = Drinks.NONE
+	selected_drink = Classes.DrinkType.NONE
 	
 	_reset_cup_transforms()
 

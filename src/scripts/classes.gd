@@ -11,7 +11,7 @@ enum ToppingType {
 enum DrinkType {
 	VODKA,
 	SYRUP,
-	BLOOD,
+	LIME,
 	WHISKEY,
 	GINGER,
 	RUM,
@@ -53,7 +53,6 @@ class Ghost:
 			drink = p_drink
 			fight_mode_data = p_fight_mode_data
 
-
 class FightModeData:
 	var movement_weight
 	var teleport_weight
@@ -86,4 +85,11 @@ class FightModeData:
 		accel_mult = p_accel_mult
 		scale = p_scale
 		movement_interval = p_movement_interval
-		
+
+class ItemInfo:
+	var name: String
+	var info: String
+	
+	func _init(p_name: String, p_info: String) -> void:
+		name = p_name
+		info = p_info
