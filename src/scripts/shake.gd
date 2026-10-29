@@ -27,6 +27,7 @@ var shake_position: ShakePosition = ShakePosition.RIGHT
 @onready var shaker_top: Sprite2D = %ShakerTop
 @onready var glass_cup: Node2D = %GlassCup
 @onready var glass_cup_fill: Sprite2D = %GlassCupFill
+@onready var fill_mask: Sprite2D = %FillMask
 @onready var button_tutorial: AnimatedSprite2D = %ButtonTutorial
 
 func _process(_delta: float) -> void:
@@ -76,8 +77,13 @@ func _handle_drink_done() -> void:
 	
 	# Pours the drink into the cup.
 	var pour_tween := create_tween().set_parallel()
-	pour_tween.tween_property(glass_cup_fill, "modulate:a", 1, 2)
+	
+	# Moves the fill mask to create the illusion of the cup filling.
+	pour_tween.tween_property(fill_mask, "offset:y", -200, 1.5)
+	
+	# Rotates the shaker.
 	pour_tween.tween_property(shaker, "rotation_degrees", -110, 2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	
 	await pour_tween.finished
 	
 	# Copied straight from Mix.exit_cup()

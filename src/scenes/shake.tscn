@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cehhyyar7oaq8" path="res://src/resources/images/Glass_Cup_Back.png" id="4_mh1cm"]
 [ext_resource type="Texture2D" uid="uid://d3rjk6bslvb8x" path="res://src/resources/images/Cup.png" id="4_o6noi"]
 [ext_resource type="Texture2D" uid="uid://dv0672tqt6qny" path="res://src/resources/images/Glass_Cup_Fill.png" id="5_43ica"]
+[ext_resource type="Texture2D" uid="uid://dqepjox346mfx" path="res://scary-face-ghost-on-dark-background.png" id="5_od48p"]
 [ext_resource type="Texture2D" uid="uid://dtjhuwef3mm1g" path="res://src/resources/images/Glass_Cup_Front.png" id="6_od48p"]
 [ext_resource type="Texture2D" uid="uid://dllnk2yurir55" path="res://src/resources/images/Shake_Arrows_1.png" id="8_mh1cm"]
 [ext_resource type="Texture2D" uid="uid://dj4qyukm4yh36" path="res://src/resources/images/Shake_Arrows_2.png" id="9_43ica"]
@@ -44,9 +45,16 @@ position = Vector2(-257, 662)
 scale = Vector2(1.4, 1.4)
 texture = ExtResource("4_mh1cm")
 
-[node name="GlassCupFill" type="Sprite2D" parent="GlassCup" unique_id=1659815907]
+[node name="FillMask" type="Sprite2D" parent="GlassCup" unique_id=1786404501]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
+clip_children = 1
+rotation = 3.1415927
+texture = ExtResource("5_od48p")
+offset = Vector2(0, -600)
+
+[node name="GlassCupFill" type="Sprite2D" parent="GlassCup/FillMask" unique_id=1659815907]
+unique_name_in_owner = true
+rotation = 3.1415927
 scale = Vector2(1.4, 1.4)
 texture = ExtResource("5_43ica")
 
