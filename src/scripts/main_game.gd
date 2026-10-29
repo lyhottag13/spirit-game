@@ -293,6 +293,9 @@ func _on_topping_topping_selected(topping_type: String) -> void:
 	print_debug(topping_type)
 	# Sets the drink tooltip in the topping_menu.
 	main_topping_menu.set_tooltip(topping_type.capitalize(), "Default")
+	
+	topping_menu.set_enabled(false)
+	scene_switcher.set_enabled(false)
 
 
 func _on_topping_menu_used() -> void:
@@ -304,11 +307,17 @@ func _on_topping_menu_used() -> void:
 	
 	if current_drink.topping != Classes.ToppingType.NONE:
 		pass # Do something here to only allow mixing in the Mix menu.
+	
+	topping_menu.set_enabled(true)
+	scene_switcher.set_enabled(true)
 
 
 func _on_topping_menu_canceled() -> void:
 	var topping_scene := current_scene as Topping
 	topping_scene.cancel()
+	
+	topping_menu.set_enabled(true)
+	scene_switcher.set_enabled(true)
 
 
 func _on_topping_menu_trash_pressed() -> void:
