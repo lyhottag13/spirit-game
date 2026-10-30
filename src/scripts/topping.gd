@@ -6,6 +6,8 @@ signal topping_selected(topping_type: String)
 
 var selected_topping: Classes.ToppingType = Classes.ToppingType.NONE
 
+@onready var add_sfx: AudioStreamPlayer = %AddSFX
+
 var topping_textures: Dictionary[Classes.ToppingType, CompressedTexture2D] = {
 	Classes.ToppingType.MINT: preload("uid://bifp8gvx3jsc5"),
 	Classes.ToppingType.CHERRY: preload("uid://cyi7u3hhvxkme"),
@@ -84,4 +86,7 @@ func ready_topping():
 
 
 func drop_topping():
+	var sound_tween := create_tween()
+	sound_tween.tween_interval(0.2)
+	sound_tween.tween_callback(add_sfx.play)
 	await create_tween().tween_property(topping,"position:y",0,0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SPRING).finished

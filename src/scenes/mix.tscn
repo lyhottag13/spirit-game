@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://d3rjk6bslvb8x" path="res://src/resources/images/Cup.png" id="6_3jqxk"]
 [ext_resource type="Texture2D" uid="uid://c8ybtow6crurv" path="res://src/resources/images/Mix_Lime.png" id="7_keo1o"]
 [ext_resource type="Texture2D" uid="uid://67htwrjskknd" path="res://src/resources/images/Cup_Full.png" id="9_w2sh7"]
+[ext_resource type="AudioStream" uid="uid://byixmo22wlr0j" path="res://src/resources/sounds/bottle_selected.ogg" id="13_dgict"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_keo1o"]
 atlas = ExtResource("4_244je")
@@ -109,6 +110,11 @@ texture_normal = ExtResource("2_5m66n")
 unique_name_in_owner = true
 position = Vector2(960, 778)
 sprite_frames = SubResource("SpriteFrames_s7wsd")
+
+[node name="BottleSelected" type="AudioStreamPlayer" parent="." unique_id=1879648897]
+unique_name_in_owner = true
+stream = ExtResource("13_dgict")
+volume_db = -7.583
 
 [connection signal="pressed" from="Vodka" to="." method="_on_drink_clicked" flags=18 binds= [0]]
 [connection signal="pressed" from="Syrup" to="." method="_on_drink_clicked" flags=18 binds= [1]]

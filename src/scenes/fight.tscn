@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cs60ente6cm3v" path="res://src/resources/images/Bar_Background_2.png" id="3_eaj2s"]
 [ext_resource type="PackedScene" uid="uid://rfsqo1g5h5jc" path="res://src/scenes/watergun.tscn" id="3_vc0hp"]
 [ext_resource type="Texture2D" uid="uid://dvdvajbk36elv" path="res://Holy_Soaker.png" id="4_eaj2s"]
+[ext_resource type="AudioStream" uid="uid://bxmyx65htaw6x" path="res://src/resources/sounds/angry.ogg" id="7_eaj2s"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cyxv1"]
 animations = [{
@@ -74,6 +75,11 @@ texture = ExtResource("4_eaj2s")
 
 [node name="point" type="Node2D" parent="GunRotate" unique_id=32603995]
 position = Vector2(-255, -130)
+
+[node name="AngrySFX" type="AudioStreamPlayer" parent="." unique_id=558420991]
+unique_name_in_owner = true
+stream = ExtResource("7_eaj2s")
+volume_db = -14.806
 
 [connection signal="pressure_changed" from="." to="SpiritEntity" method="_on_fight_mode_pressure_changed"]
 [connection signal="wet" from="SpiritEntity" to="." method="_on_spirit_entity_wet"]

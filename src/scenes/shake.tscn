@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dllnk2yurir55" path="res://src/resources/images/Shake_Arrows_1.png" id="8_mh1cm"]
 [ext_resource type="Texture2D" uid="uid://dj4qyukm4yh36" path="res://src/resources/images/Shake_Arrows_2.png" id="9_43ica"]
 [ext_resource type="Texture2D" uid="uid://ybpsxcky645p" path="res://src/resources/images/Shake_Shaker_Lid.png" id="10_43ica"]
+[ext_resource type="AudioStream" uid="uid://bxjbey8vra8ni" path="res://src/resources/sounds/pour.ogg" id="12_ri2g1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s7wsd"]
 animations = [{
@@ -84,3 +85,8 @@ unique_name_in_owner = true
 position = Vector2(69.99999, -98.99999)
 rotation = -1.2479104
 texture = ExtResource("10_43ica")
+
+[node name="PourSFX" type="AudioStreamPlayer" parent="." unique_id=831562136]
+unique_name_in_owner = true
+stream = ExtResource("12_ri2g1")
+volume_db = -10.472

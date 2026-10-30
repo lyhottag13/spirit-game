@@ -29,6 +29,7 @@ var shake_position: ShakePosition = ShakePosition.RIGHT
 @onready var glass_cup_fill: Sprite2D = %GlassCupFill
 @onready var fill_mask: Sprite2D = %FillMask
 @onready var button_tutorial: AnimatedSprite2D = %ButtonTutorial
+@onready var pour_sfx: AudioStreamPlayer = %PourSFX
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("shake_left"):
@@ -86,6 +87,9 @@ func _handle_drink_done() -> void:
 	
 	# Rotates the shaker.
 	pour_tween.tween_property(shaker, "rotation_degrees", -110, 2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	
+	# Plays the pouring sound effect.
+	pour_sfx.play()
 	
 	await pour_tween.finished
 	

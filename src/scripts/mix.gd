@@ -1,6 +1,8 @@
 class_name Mix
 extends Node2D
 
+@onready var bottle_selected: AudioStreamPlayer = %BottleSelected
+
 ## Tells the main game what drink was selected for the title.
 signal drink_selected(drink_type: String)
 
@@ -75,6 +77,9 @@ func move_drink() -> void:
 	bottle_tween.parallel().tween_property(selected_bottle, "scale", Vector2(1.4, 1.4), SELECT_TIME)
 	bottle_tween.parallel().tween_property(selected_bottle, "rotation_degrees", -54, SELECT_TIME)
 	
+	# Plays the SFX associated with a bottle.
+	if selected_drink in [Classes.DrinkType.VODKA, Classes.DrinkType.SYRUP, Classes.DrinkType.WHISKEY, Classes.DrinkType.RUM]:
+		bottle_selected.play()
 
 func _reset_cup_transforms() -> void:
 	

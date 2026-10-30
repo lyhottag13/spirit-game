@@ -11,10 +11,11 @@ signal pressure_changed(pressure)
 @onready var texture_rect: TextureRect = $GunRotate/TextureRect
 @onready var water_gun: Node2D = $WaterGun
 @onready var point: Node2D = $GunRotate/point
+@onready var angry_sfx: AudioStreamPlayer = %AngrySFX
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	angry_sfx.play()
 
 
 var spirit_health = 100.0

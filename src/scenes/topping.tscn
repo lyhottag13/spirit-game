@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dv0672tqt6qny" path="res://src/resources/images/Glass_Cup_Fill.png" id="7_ko42s"]
 [ext_resource type="Texture2D" uid="uid://cydg17gpf7ds2" path="res://src/resources/images/Blood.png" id="7_xxm0p"]
 [ext_resource type="Texture2D" uid="uid://dtjhuwef3mm1g" path="res://src/resources/images/Glass_Cup_Front.png" id="8_vovy6"]
+[ext_resource type="AudioStream" uid="uid://ppf2esv2jwej" path="res://src/resources/sounds/topping_add.ogg" id="11_xxm0p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_215jv"]
 atlas = ExtResource("2_obmyh")
@@ -115,6 +116,11 @@ scale = Vector2(1.4, 1.4)
 [node name="GlassCupFront" type="Sprite2D" parent="GlassCup" unique_id=1809839358]
 scale = Vector2(1.3999999, 1.3999999)
 texture = ExtResource("8_vovy6")
+
+[node name="AddSFX" type="AudioStreamPlayer" parent="." unique_id=673029749]
+unique_name_in_owner = true
+stream = ExtResource("11_xxm0p")
+volume_db = -18.056
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_topping_clicked" binds= [0]]
 [connection signal="pressed" from="TextureButton2" to="." method="_on_topping_clicked" binds= [1]]
