@@ -29,7 +29,7 @@ func _ready() -> void:
 
 func _on_topping_clicked(topping_type: Classes.ToppingType) -> void:
 	# Returns early if the topping isn't NONE, since that means we're currently deciding to pour or cancel.
-	if selected_topping != Classes.ToppingType.NONE:
+	if selected_topping != Classes.ToppingType.NONE or placed_topping != Classes.ToppingType.NONE:
 		return
 	
 	selected_topping = topping_type
