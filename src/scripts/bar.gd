@@ -86,6 +86,7 @@ func place_cup(cup_node: Node2D) -> void:
 ## but Main Game calls this method after a serve, during which a cup always exists
 ## on screen.
 func exit_cup() -> void:
+	if cup:
 		await create_tween().tween_property(cup, "position:x", -300 , 3).set_trans(Tween.TRANS_QUAD).finished
 		cup.queue_free()
 

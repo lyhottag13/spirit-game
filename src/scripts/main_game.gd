@@ -459,6 +459,9 @@ func test_drink() -> bool:
 
 
 func _handle_ending() -> void:
+	# Gets rid of the cup if there is one.
+	(current_scene as Bar).exit_cup()
+	
 	await (current_scene as Bar).exit_ghost()
 	
 	await get_tree().create_timer(2).timeout
