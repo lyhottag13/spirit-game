@@ -62,6 +62,7 @@ func enter_drink() -> void:
 	
 	await create_tween().tween_property(glass_cup, "position:x", DisplayServer.window_get_size().x / 2.0, 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).finished
 
+
 func exit_drink() -> void:
 	await create_tween().tween_property(glass_cup, "position:x", DisplayServer.window_get_size().x + 300, 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).finished
 
@@ -79,6 +80,7 @@ func set_topping(p_topping: Classes.ToppingType) -> void:
 func ready_topping():
 	topping.texture = topping_textures[selected_topping]
 	topping.global_position = point.global_position
-	
+
+
 func drop_topping():
-	await create_tween().tween_property(topping,"position:y",0,0.5).finished
+	await create_tween().tween_property(topping,"position:y",0,0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SPRING).finished

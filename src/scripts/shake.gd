@@ -70,7 +70,7 @@ func _handle_drink_done() -> void:
 	const SLIDE_TIME = 0.4
 	
 	# Slides the shaker back to the center of the screen.
-	await create_tween().tween_property(shaker_whole, "position:x", 1060, 1).finished
+	await create_tween().tween_property(shaker_whole, "position:x", 1060, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD).finished
 	
 	# Copied straight from Mix.enter_cup()
 	await create_tween().tween_property(glass_cup, "position:x", DisplayServer.window_get_size().x / 2.0, SLIDE_TIME).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).finished

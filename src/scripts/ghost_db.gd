@@ -2,9 +2,9 @@ extends Node
 
 var pirate: Classes.Ghost = Classes.Ghost.new(
 	"Patchy",
-	"Ahoy. I wants lots o' rum or I'll scuttle ye, savvy?",
-	"im fuming",
-	"i fw it",
+	"Arrr, I wants lots o' rum or I'll make ye walk the plank!\nTop it with something to remind me of the mighty winds of the high seas!",
+	"Dis drink be fearful, I'll throw ye in Davy Jones's locker!",
+	"Dis drink be great, thanks matey.",
 	preload("uid://c8pt4jstkgogc"),
 	Classes.Drink.new(
 		[
@@ -21,9 +21,9 @@ var pirate: Classes.Ghost = Classes.Ghost.new(
 var random_ghosts: Array[Classes.Ghost] = [
 	Classes.Ghost.new(
 		"Vlad",
-		"Give me one, two, three pours of whiskey. Ah-ah-ah!\nAnd don't forget to give it my faaaavorite scarlet topping.",
-		"im fuming",
-		"i fw it",
+		"Give me vun, two, three pours of viskey. Ah-ah-ah!\nAnd give it my faaaavorite scarlet topping.",
+		"I vill put your head on a stake for zhis!",
+		"Zhis drink, my eternal deelight.",
 		preload("uid://bvh4q06xxcxv5"),
 		Classes.Drink.new(
 			[
@@ -36,9 +36,9 @@ var random_ghosts: Array[Classes.Ghost] = [
 	),
 	Classes.Ghost.new(
 		"Glarie",
-		"I don't see myself liking your drink unless... Vodka.\nAnd blah blah blah.",
-		"im fuming",
-		"i fw it",
+		"A want tae remember ma college days, we are talkin parties, mixin liquors, an gettin intae trouble.\nA wis once pink like a cherry, afraid A wis gonna burst.",
+		"Ye tryin tae be dreich wi me, ye'll have it!",
+		"This is whit we're talkin aboot, thanks!",
 		preload("uid://cibi7edi4hbmv"),
 		Classes.Drink.new(
 			[
@@ -51,10 +51,10 @@ var random_ghosts: Array[Classes.Ghost] = [
 	),
 	Classes.Ghost.new(
 		"Crazy Carl",
-		"Ginger, ginger, rum, and 1.",
-		"im fuming",
-		"i fw it",
-		preload("uid://c8pt4jstkgogc"),
+		"Ah want one awf 'em Kentucky Mules.",
+		"Ya vermin. Ah'm gonna jerk a knot in yo-wr tail!",
+		"This is a blame daisy drank, thanks.",
+		preload("uid://cfwce2nsr64jl"),
 		Classes.Drink.new(
 			[
 				Classes.DrinkType.GINGER,
@@ -65,11 +65,11 @@ var random_ghosts: Array[Classes.Ghost] = [
 		),
 	),
 	Classes.Ghost.new(
-		"Elmer",
-		"Give me all syrup. I love syrup.\nAnd mint, too.",
-		"im fuming",
+		"Calcifer",
+		"I need a glass of sweet 'n sour for my weary bones.\nAnd mint, too.",
+		"You've rattled with the wrong guy, pal.",
 		"i fw it",
-		preload("uid://c8pt4jstkgogc"),
+		preload("uid://b0se56bn0t0ll"),
 		Classes.Drink.new(
 			[
 				Classes.DrinkType.SYRUP,
