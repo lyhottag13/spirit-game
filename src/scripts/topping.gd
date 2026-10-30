@@ -15,7 +15,7 @@ var topping_textures: Dictionary[Classes.ToppingType, CompressedTexture2D] = {
 }
 
 ## Stores the topping placed if the player swaps between the bar and topping scenes.
-var placed_topping: Classes.ToppingType
+var placed_topping: Classes.ToppingType = Classes.ToppingType.NONE
 
 @onready var point: Marker2D = $Point
 @onready var topping: Sprite2D = %Topping
@@ -23,7 +23,7 @@ var placed_topping: Classes.ToppingType
 
 func _ready() -> void:
 	# Sets the topping's texture if the Main Game sets the topping before initialization
-	if placed_topping:
+	if placed_topping != Classes.ToppingType.NONE:
 		topping.texture = topping_textures[placed_topping]
 
 
