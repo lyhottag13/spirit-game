@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b2igyt3wukd87"]
+
+[ext_resource type="Script" uid="uid://hph3tfhj4hdh" path="res://src/scripts/audio_manager.gd" id="1_yciuj"]
+[ext_resource type="AudioStream" uid="uid://cmhv1t16ux42l" path="res://src/resources/music/fight.mp3" id="2_yciuj"]
+
+[node name="AudioManager" type="Node" unique_id=1086104179]
+script = ExtResource("1_yciuj")
+
+[node name="Background" type="AudioStreamPlayer" parent="." unique_id=273359101]
+unique_name_in_owner = true
+stream = ExtResource("2_yciuj")
+volume_db = -19.5
+parameters/looping = true

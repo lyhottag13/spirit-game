@@ -54,6 +54,9 @@ func _ready() -> void:
 	main_menu.start.connect(_start_game)
 	main_menu.set_anchors_preset(Control.PRESET_FULL_RECT)
 	world.add_child(main_menu)
+	
+	# Sets up the music.
+	AudioManager.play_background_jazz()
 
 
 func _start_game() -> void:
@@ -384,6 +387,8 @@ func _handle_serve() -> void:
 	# Hides dialogue, since it is automatically shown upon switching.
 	dialogue.hide()
 	
+	AudioManager.fade_background()
+	
 	# Holds the player in suspense. Was their drink good?
 	await get_tree().create_timer(2).timeout
 	
@@ -400,6 +405,8 @@ func _handle_serve() -> void:
 	reputation += 1 if is_satisfied else -1
 	
 	if not is_satisfied:
+		AudioManager.play_background_fight()
+		
 		# Sets up fight scene for negative reaction.
 		var fight_scene = FIGHT.instantiate()
 		
@@ -416,9 +423,6 @@ func _handle_serve() -> void:
 		
 		scene_switcher.hide()
 	else:
-		# Gets rid of the old cup.
-		
-		
 		_handle_post_reaction(is_satisfied)
 
 
@@ -489,21 +493,26 @@ func _on_fight_fight_finished() -> void:
 
 
 func _handle_post_reaction(satisfied: bool) -> void:
-	# Checks if there are more customers available. If not, game's over.
-	if ghost_db.random_ghosts.size() == 0:
-		_handle_ending()
-		return
 	if satisfied:
-		
 		dialogue.visible = true
 		dialogue.change_text(current_ghost.name, current_ghost.happy)
 	if not satisfied:
 		dialogue.visible = true
 		dialogue.change_text(current_ghost.name, current_ghost.angry)
-	await get_tree().create_timer(2).timeout
+	
+	# Checks if there are more customers available. If not, game's over.
+	if ghost_db.random_ghosts.size() == 0:
+		_handle_ending()
+		return
+	
+	# Lets the player read the dialogue.
+	await get_tree().create_timer(3).timeout
+
 	if satisfied:
 		(current_scene as Bar).exit_cup()
+	
 	dialogue.visible = false
+	
 	# Selects a new ghost and changes the current_ghost global.
 	select_new_ghost()
 	
