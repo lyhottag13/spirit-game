@@ -12,9 +12,6 @@ signal pressure_changed(pressure)
 @onready var water_gun: Node2D = $WaterGun
 @onready var point: Node2D = $GunRotate/point
 
-
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

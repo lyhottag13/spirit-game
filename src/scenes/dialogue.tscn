@@ -57,6 +57,5 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_irdo3")
 bbcode_enabled = true
-text = "Hey! I'm a guy"
 fit_content = true
 scroll_active = false

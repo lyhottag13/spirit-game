@@ -58,8 +58,7 @@ func swap_customer(new_customer_texture: CompressedTexture2D) -> void:
 	# Teleports the ghost sprite to the right side of the screen.
 	ghost.position.x = DisplayServer.window_get_size().x + 600
 	
-	# Moves the ghost texture back to the center with the new texture.
-	await create_tween().tween_property(ghost, "position:x", 960, 3).set_trans(Tween.TRANS_QUAD).finished
+	await enter_ghost()
 
 
 func exit_ghost() -> void:
@@ -89,3 +88,8 @@ func place_cup(cup_node: Node2D) -> void:
 func exit_cup() -> void:
 		await create_tween().tween_property(cup, "position:x", -300 , 3).set_trans(Tween.TRANS_QUAD).finished
 		cup.queue_free()
+
+
+func enter_ghost() -> void:
+	# Moves the ghost texture back to the center with the new texture.
+	await create_tween().tween_property(ghost, "position:x", 960, 3).set_trans(Tween.TRANS_QUAD).finished

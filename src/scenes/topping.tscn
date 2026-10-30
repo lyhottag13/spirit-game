@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://crdrg8id5cqa0" path="res://src/scripts/topping.gd" id="1_168y2"]
 [ext_resource type="Texture2D" uid="uid://cfermst73oln8" path="res://src/resources/images/Topping_Mint.png" id="2_obmyh"]
 [ext_resource type="Texture2D" uid="uid://bu3wrkgwmpo48" path="res://src/resources/images/Topping_Cherry.png" id="3_tbtnn"]
-[ext_resource type="Texture2D" uid="uid://dmnrchdg87yyu" path="res://src/resources/images/Bar_Top_Empty.png" id="3_upqdo"]
+[ext_resource type="Texture2D" uid="uid://b0qbxedl8rl8" path="res://src/resources/images/Mix_Bar.png" id="3_vovy6"]
 [ext_resource type="Texture2D" uid="uid://wd2ssplty3jg" path="res://src/resources/images/Mix_Background.png" id="4_tbtnn"]
 [ext_resource type="Texture2D" uid="uid://cehhyyar7oaq8" path="res://src/resources/images/Glass_Cup_Back.png" id="6_pxvxp"]
 [ext_resource type="Texture2D" uid="uid://dpx0wa3gkv58p" path="res://src/resources/images/Topping_Eyeballs.png" id="6_vovy6"]
@@ -26,7 +26,9 @@ texture = ExtResource("4_tbtnn")
 centered = false
 
 [node name="Bar" type="Sprite2D" parent="." unique_id=891087781]
-texture = ExtResource("3_upqdo")
+position = Vector2(0, -541)
+scale = Vector2(1.5009259, 1.5009259)
+texture = ExtResource("3_vovy6")
 centered = false
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=2066987732]
@@ -36,11 +38,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 149.0
-offset_top = 528.0
+offset_top = 552.0
 offset_right = 413.0
-offset_bottom = 840.0
+offset_bottom = 864.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 texture_normal = SubResource("AtlasTexture_215jv")
 stretch_mode = 0
 
@@ -51,11 +54,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 446.0
-offset_top = 533.0
+offset_top = 557.0
 offset_right = 713.0
-offset_bottom = 864.0
+offset_bottom = 888.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 texture_normal = SubResource("AtlasTexture_dgict")
 stretch_mode = 0
 
@@ -66,11 +70,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 1195.9495
-offset_top = 659.0
+offset_top = 683.0
 offset_right = 1595.9495
-offset_bottom = 863.0
+offset_bottom = 887.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("6_vovy6")
 stretch_mode = 0
 
@@ -81,17 +86,18 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 1584.0
-offset_top = 560.0
+offset_top = 584.0
 offset_right = 1884.0
-offset_bottom = 860.0
+offset_bottom = 884.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("7_xxm0p")
 stretch_mode = 0
 
 [node name="GlassCup" type="Node2D" parent="." unique_id=282660004]
 unique_name_in_owner = true
-position = Vector2(960, 662)
+position = Vector2(960, 622)
 
 [node name="GlassCupBack" type="Sprite2D" parent="GlassCup" unique_id=523426503]
 scale = Vector2(1.4, 1.4)

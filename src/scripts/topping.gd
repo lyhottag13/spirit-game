@@ -11,6 +11,7 @@ var topping_textures: Dictionary[Classes.ToppingType, CompressedTexture2D] = {
 	Classes.ToppingType.CHERRY: preload("uid://cyi7u3hhvxkme"),
 	Classes.ToppingType.EYEBALL: preload("uid://cvyk85qlftnsw"),
 	Classes.ToppingType.BLOOD: preload("uid://c3r3is2wdr17c"),
+	Classes.ToppingType.NONE: null
 }
 
 ## Stores the topping placed if the player swaps between the bar and topping scenes.
@@ -34,7 +35,7 @@ func _on_topping_clicked(topping_type: Classes.ToppingType) -> void:
 	
 	# Emits the topping to MainGame.
 	topping_selected.emit(topping_type)
-	
+
 
 ## Tops the drink with the currently-selected topping.
 func top() -> Classes.ToppingType:

@@ -52,6 +52,7 @@ func _ready() -> void:
 	
 	var main_menu: MainMenu = MAIN_MENU.instantiate()
 	main_menu.start.connect(_start_game)
+	main_menu.set_anchors_preset(Control.PRESET_FULL_RECT)
 	world.add_child(main_menu)
 
 
@@ -434,12 +435,17 @@ func test_drink() -> bool:
 	var current_topping = current_drink.topping
 	var desired_topping = current_ghost.drink.topping
 	
+	# Stores whether the drink succeeds the comparison checks.
+	var is_drink_good = false
 	# Compares the hash of the bases to test for array equality
 	# Drink MUST BE IDENTICAL to the desired drink.
-	var is_drink_good = current_base.hash() == desired_base.hash() and current_topping == desired_topping
+	is_drink_good = current_base.hash() == desired_base.hash() and current_topping == desired_topping
+	
+	if current_ghost == ghost_db.pirate:
+		if current_drink.base.find(Classes.DrinkType.RUM):
+			is_drink_good = true
 	
 	return is_drink_good
-
 
 func _handle_ending() -> void:
 	await (current_scene as Bar).exit_ghost()
