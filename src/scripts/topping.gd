@@ -17,6 +17,7 @@ var topping_textures: Dictionary[Classes.ToppingType, CompressedTexture2D] = {
 ## Stores the topping placed if the player swaps between the bar and topping scenes.
 var placed_topping: Classes.ToppingType
 
+@onready var point: Marker2D = $Point
 @onready var topping: Sprite2D = %Topping
 @onready var glass_cup: Node2D = %GlassCup
 
@@ -32,7 +33,7 @@ func _on_topping_clicked(topping_type: Classes.ToppingType) -> void:
 		return
 	
 	selected_topping = topping_type
-	
+	ready_topping()
 	# Emits the topping to MainGame.
 	topping_selected.emit(topping_type)
 
@@ -44,7 +45,7 @@ func top() -> Classes.ToppingType:
 	# Assigns the added topping's texture to the topping sprite.
 	topping.texture = topping_textures[selected_topping]
 	
-	selected_topping = Classes.ToppingType.NONE
+
 	return topping_to_return
 
 
@@ -73,3 +74,11 @@ func get_duplicated_cup_node() -> Node2D:
 
 func set_topping(p_topping: Classes.ToppingType) -> void:
 	placed_topping = p_topping
+	
+	
+func ready_topping():
+	topping.texture = topping_textures[selected_topping]
+	topping.global_position = point.global_position
+	
+func drop_topping():
+	await create_tween().tween_property(topping,"position:y",0,0.5).finished
