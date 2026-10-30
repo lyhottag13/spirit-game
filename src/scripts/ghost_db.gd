@@ -3,6 +3,8 @@ extends Node
 var pirate: Classes.Ghost = Classes.Ghost.new(
 	"Davey",
 	"Ahoy. I wants lots o' rum or I'll scuttle ye, savvy?",
+	"im fuming",
+	"i fw it",
 	preload("uid://c8pt4jstkgogc"),
 	Classes.Drink.new(
 		[
@@ -20,6 +22,8 @@ var random_ghosts: Array[Classes.Ghost] = [
 	Classes.Ghost.new(
 		"Vlad",
 		"Give me one, two, three pours of whiskey. Ah-ah-ah!\nAnd don't forget to give it my faaaavorite scarlet topping.",
+		"im fuming",
+		"i fw it",
 		preload("uid://bvh4q06xxcxv5"),
 		Classes.Drink.new(
 			[
@@ -33,6 +37,8 @@ var random_ghosts: Array[Classes.Ghost] = [
 	Classes.Ghost.new(
 		"Glarie",
 		"I don't see myself liking your drink unless... Vodka.\nAnd blah blah blah.",
+		"im fuming",
+		"i fw it",
 		preload("uid://cibi7edi4hbmv"),
 		Classes.Drink.new(
 			[
@@ -46,6 +52,8 @@ var random_ghosts: Array[Classes.Ghost] = [
 	Classes.Ghost.new(
 		"Crazy Carl",
 		"Ginger, ginger, rum, and 1.",
+		"im fuming",
+		"i fw it",
 		preload("uid://c8pt4jstkgogc"),
 		Classes.Drink.new(
 			[
@@ -59,6 +67,8 @@ var random_ghosts: Array[Classes.Ghost] = [
 	Classes.Ghost.new(
 		"Elmer",
 		"Give me all syrup. I love syrup.\nAnd mint, too.",
+		"im fuming",
+		"i fw it",
 		preload("uid://c8pt4jstkgogc"),
 		Classes.Drink.new(
 			[

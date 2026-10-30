@@ -84,6 +84,8 @@ func select_new_ghost(p_ghost: Classes.Ghost = null) -> void:
 	current_ghost = Classes.Ghost.new(
 		chosen_ghost.name,
 		chosen_ghost.order,
+		chosen_ghost.angry,
+		chosen_ghost.happy,
 		chosen_ghost.texture,
 		Classes.Drink.new(
 			chosen_ghost.drink.base,
@@ -410,9 +412,9 @@ func _handle_serve() -> void:
 		scene_switcher.hide()
 	else:
 		# Gets rid of the old cup.
-		(current_scene as Bar).exit_cup()
 		
-		_handle_post_reaction()
+		
+		_handle_post_reaction(is_satisfied)
 
 
 ## Tests whether the drink meets the current customer's standards.
@@ -473,15 +475,25 @@ func _on_fight_fight_finished() -> void:
 	# Shows because the scene_switcher is hidden at this point.
 	scene_switcher.show()
 	
-	_handle_post_reaction()
+	_handle_post_reaction(false)
 
 
-func _handle_post_reaction() -> void:
+func _handle_post_reaction(satisfied: bool) -> void:
 	# Checks if there are more customers available. If not, game's over.
 	if ghost_db.random_ghosts.size() == 0:
 		_handle_ending()
 		return
-	
+	if satisfied:
+		
+		dialogue.visible = true
+		dialogue.change_text(current_ghost.name, current_ghost.happy)
+	if not satisfied:
+		dialogue.visible = true
+		dialogue.change_text(current_ghost.name, current_ghost.angry)
+	await get_tree().create_timer(2).timeout
+	if satisfied:
+		(current_scene as Bar).exit_cup()
+	dialogue.visible = false
 	# Selects a new ghost and changes the current_ghost global.
 	select_new_ghost()
 	

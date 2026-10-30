@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://b2t704h6tdeim"]
+
+[ext_resource type="Script" uid="uid://bi2f5acgpucnx" path="res://src/scripts/main_game.gd" id="1_wwqub"]
+[ext_resource type="PackedScene" uid="uid://d0lr7g3kh3wtf" path="res://src/scenes/mix_menu.tscn" id="3_m7syd"]
+[ext_resource type="PackedScene" uid="uid://dakkx0t35t33l" path="res://src/scenes/scene_switcher.tscn" id="3_r3nyt"]
+[ext_resource type="PackedScene" uid="uid://dpeifvowepe6r" path="res://src/scenes/dialogue.tscn" id="4_m7syd"]
+[ext_resource type="PackedScene" uid="uid://43kxl7lrwakq" path="res://src/scenes/topping_menu.tscn" id="5_c5f53"]
+
+[node name="MainGame" type="Node" unique_id=855186453]
+script = ExtResource("1_wwqub")
+
+[node name="World" type="Node2D" parent="." unique_id=2064885806]
+unique_name_in_owner = true
+
+[node name="GUI" type="CanvasLayer" parent="." unique_id=1248560299]
+unique_name_in_owner = true
+
+[node name="MixMenu" parent="GUI" unique_id=1713630294 instance=ExtResource("3_m7syd")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Dialogue" parent="GUI" unique_id=1311503088 instance=ExtResource("4_m7syd")]
+unique_name_in_owner = true
+visible = false
+mouse_filter = 2
+
+[node name="ToppingMenu" parent="GUI" unique_id=404569553 instance=ExtResource("5_c5f53")]
+unique_name_in_owner = true
+visible = false
+
+[node name="SceneSwitcher" parent="GUI" unique_id=1862007015 instance=ExtResource("3_r3nyt")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="mix_pressed" from="GUI/MixMenu" to="." method="_on_mix_menu_mix_pressed"]
+[connection signal="trash_pressed" from="GUI/MixMenu" to="." method="_on_mix_menu_trash_pressed"]
+[connection signal="serve_pressed" from="GUI/ToppingMenu" to="." method="_on_topping_menu_serve_pressed"]
+[connection signal="trash_pressed" from="GUI/ToppingMenu" to="." method="_on_topping_menu_trash_pressed"]
+[connection signal="scene_switched" from="GUI/SceneSwitcher" to="." method="_on_scene_switcher_scene_switched"]

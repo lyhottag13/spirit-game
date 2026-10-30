@@ -36,6 +36,8 @@ class Drink:
 class Ghost:
 	var name: String
 	var order: String
+	var angry : String
+	var happy : String
 	var texture: CompressedTexture2D
 	var drink: Drink
 	var fight_mode_data: FightModeData
@@ -43,12 +45,16 @@ class Ghost:
 	func _init(
 		p_name: String = "Default", 
 		p_order: String = "Default", 
+		p_angry: String = "Default",
+		p_happy: String = "Default", 
 		p_texture: CompressedTexture2D = preload("uid://c8pt4jstkgogc"),
 		p_drink: Drink = Drink.new(),
 		p_fight_mode_data: FightModeData = FightModeData.new(),
 		) -> void:
 			name = p_name
 			order = p_order
+			angry = p_angry
+			happy = p_happy
 			texture = p_texture
 			drink = p_drink
 			fight_mode_data = p_fight_mode_data
