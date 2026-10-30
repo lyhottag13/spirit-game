@@ -493,6 +493,8 @@ func _on_fight_fight_finished() -> void:
 
 
 func _handle_post_reaction(satisfied: bool) -> void:
+	AudioManager.play_background_jazz()
+	
 	if satisfied:
 		dialogue.visible = true
 		dialogue.change_text(current_ghost.name, current_ghost.happy)
