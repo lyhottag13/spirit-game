@@ -431,29 +431,32 @@ func test_drink() -> bool:
 	# TODO: Figure out logic for a correct drink, simplest way would be to
 	# check if the drink matches exactly what the customer wanted.
 	
-	# Stores the actual drink's base and sorts it for easy comparison.
+	# Stores the actual drink's base for easy comparison.
 	var current_base = current_drink.base
-	current_base.sort()
 	
-	# Stores the desired drink's base and sorts it for easy comparison.
+	# Stores the desired drink's base for easy comparison.
 	var desired_base = current_ghost.drink.base
-	desired_base.sort()
 	
-	# Stores the toppings for easy access.
+	# Stores the toppings for easy comparison.
 	var current_topping = current_drink.topping
 	var desired_topping = current_ghost.drink.topping
 	
 	# Stores whether the drink succeeds the comparison checks.
 	var is_drink_good = false
+	
+	# Clears out the desired base using the current base to see if we satisfied the base requirement.
+	for single_base in current_base:
+		desired_base.erase(single_base)
+	
+	# Checks if the base is satisfied based on whether the desired_base array is empty.
+	var is_base_satisfied := desired_base.is_empty()
+	
 	# Compares the hash of the bases to test for array equality
 	# Drink MUST BE IDENTICAL to the desired drink.
-	is_drink_good = current_base.hash() == desired_base.hash() and current_topping == desired_topping
-	
-	if current_ghost == ghost_db.pirate:
-		if current_drink.base.find(Classes.DrinkType.RUM):
-			is_drink_good = true
+	is_drink_good = is_base_satisfied and current_topping == desired_topping
 	
 	return is_drink_good
+
 
 func _handle_ending() -> void:
 	await (current_scene as Bar).exit_ghost()

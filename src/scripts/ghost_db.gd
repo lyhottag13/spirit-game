@@ -2,14 +2,12 @@ extends Node
 
 var pirate: Classes.Ghost = Classes.Ghost.new(
 	"Patchy",
-	"Arrr, I wants lots o' rum or I'll make ye walk the plank!\nTop it with something to remind me of the mighty winds of the high seas!",
+	"Arrr, I wants lots o' rum or I'll make ye walk the plank!\nTop it with something to remind me of the mighty, refreshing winds of the high seas!",
 	"Dis drink be fearful, I'll throw ye in Davy Jones's locker!",
 	"Dis drink be great, thanks matey.",
 	preload("uid://c8pt4jstkgogc"),
 	Classes.Drink.new(
 		[
-			Classes.DrinkType.RUM,
-			Classes.DrinkType.RUM,
 			Classes.DrinkType.RUM,
 		],
 		Classes.ToppingType.MINT,
@@ -42,11 +40,8 @@ var random_ghosts: Array[Classes.Ghost] = [
 		preload("uid://cibi7edi4hbmv"),
 		Classes.Drink.new(
 			[
-				Classes.DrinkType.VODKA,
-				Classes.DrinkType.VODKA,
-				Classes.DrinkType.VODKA,
 			],
-			Classes.ToppingType.MINT,
+			Classes.ToppingType.CHERRY,
 		),
 	),
 	Classes.Ghost.new(
@@ -59,24 +54,22 @@ var random_ghosts: Array[Classes.Ghost] = [
 			[
 				Classes.DrinkType.LIME,
 				Classes.DrinkType.GINGER,
-				Classes.DrinkType.RUM,
 			],
 			Classes.ToppingType.MINT,
 		),
 	),
 	Classes.Ghost.new(
 		"Calcifer",
-		"I need a glass of sweet 'n sour for my weary bones.\nAnd mint, too.",
+		"I need a glass of sweet 'n sour for my weary bones.\nAnd I want something to chew on with my strong teeth!",
 		"You've rattled with the wrong guy, pal.",
 		"My bones are rattling with delight!",
 		preload("uid://b0se56bn0t0ll"),
 		Classes.Drink.new(
 			[
 				Classes.DrinkType.SYRUP,
-				Classes.DrinkType.SYRUP,
-				Classes.DrinkType.SYRUP,
+				Classes.DrinkType.LIME,
 			],
-			Classes.ToppingType.MINT,
+			Classes.ToppingType.EYEBALL,
 		),
 	),
 ]
