@@ -52,6 +52,7 @@ func top() -> Classes.ToppingType:
 ## Cancels the topping and returns to a no-topping state.
 func cancel() -> void:
 	selected_topping = Classes.ToppingType.NONE
+	topping.texture = null
 
 
 ## Slides the drink in from the left side of the screen.

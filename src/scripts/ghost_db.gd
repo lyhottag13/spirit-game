@@ -50,14 +50,14 @@ var random_ghosts: Array[Classes.Ghost] = [
 		),
 	),
 	Classes.Ghost.new(
-		"Crazy Carl",
-		"Ah want one awf 'em Kentucky Mules.",
+		"Clint",
+		"Ah want one awf 'em Kentucky Mules. Y'know, that soda-pop fizz with a bit o' sourness?\nGarnish it with something cool and refreshing.",
 		"Ya vermin. Ah'm gonna jerk a knot in yo-wr tail!",
 		"This is a blame daisy drank, thanks.",
 		preload("uid://cfwce2nsr64jl"),
 		Classes.Drink.new(
 			[
-				Classes.DrinkType.GINGER,
+				Classes.DrinkType.LIME,
 				Classes.DrinkType.GINGER,
 				Classes.DrinkType.RUM,
 			],
@@ -68,7 +68,7 @@ var random_ghosts: Array[Classes.Ghost] = [
 		"Calcifer",
 		"I need a glass of sweet 'n sour for my weary bones.\nAnd mint, too.",
 		"You've rattled with the wrong guy, pal.",
-		"i fw it",
+		"My bones are rattling with delight!",
 		preload("uid://b0se56bn0t0ll"),
 		Classes.Drink.new(
 			[
