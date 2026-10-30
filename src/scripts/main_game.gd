@@ -316,7 +316,7 @@ func _on_topping_menu_used() -> void:
 	
 	# Adds the used topping into the drink.
 	current_drink.topping = topping_used
-	
+	topping_scene.drop_topping()
 	if current_drink.topping != Classes.ToppingType.NONE:
 		pass # Do something here to only allow mixing in the Mix menu.
 	

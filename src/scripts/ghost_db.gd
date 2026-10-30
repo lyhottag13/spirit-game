@@ -1,7 +1,7 @@
 extends Node
 
 var pirate: Classes.Ghost = Classes.Ghost.new(
-	"Davey",
+	"Patchy",
 	"Ahoy. I wants lots o' rum or I'll scuttle ye, savvy?",
 	"im fuming",
 	"i fw it",

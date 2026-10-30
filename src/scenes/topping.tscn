@@ -21,6 +21,9 @@ atlas = ExtResource("3_tbtnn")
 [node name="Topping" type="Node2D" unique_id=229168026]
 script = ExtResource("1_168y2")
 
+[node name="Point" type="Marker2D" parent="." unique_id=151457447]
+position = Vector2(988, 251)
+
 [node name="Background" type="Sprite2D" parent="." unique_id=1335658528]
 texture = ExtResource("4_tbtnn")
 centered = false
