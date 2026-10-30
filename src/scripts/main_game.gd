@@ -57,6 +57,10 @@ func _ready() -> void:
 
 
 func _start_game() -> void:
+	# Removes the MainMenu scene, which shouldn't be assigned to current_scene because it's not a Node2D.
+	# There's not really a reason for it, I guess I could just make current_scene a Node instead.
+	world.get_child(0).queue_free()
+	
 	# Sets up the bar.
 	current_scene = BAR.instantiate()
 	world.add_child(current_scene)

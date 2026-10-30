@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b2t704h6tdeim"]
 
 [ext_resource type="Script" uid="uid://bi2f5acgpucnx" path="res://src/scripts/main_game.gd" id="1_wwqub"]
-[ext_resource type="PackedScene" uid="uid://gngnsmd71vbo" path="res://src/scenes/main_menu.tscn" id="2_wrvd8"]
 [ext_resource type="PackedScene" uid="uid://d0lr7g3kh3wtf" path="res://src/scenes/mix_menu.tscn" id="3_m7syd"]
 [ext_resource type="PackedScene" uid="uid://dakkx0t35t33l" path="res://src/scenes/scene_switcher.tscn" id="3_r3nyt"]
 [ext_resource type="PackedScene" uid="uid://dpeifvowepe6r" path="res://src/scenes/dialogue.tscn" id="4_m7syd"]
@@ -12,8 +11,6 @@ script = ExtResource("1_wwqub")
 
 [node name="World" type="Node2D" parent="." unique_id=2064885806]
 unique_name_in_owner = true
-
-[node name="MainMenu" parent="World" unique_id=444177623 instance=ExtResource("2_wrvd8")]
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=1248560299]
 unique_name_in_owner = true
